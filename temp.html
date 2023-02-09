@@ -10,8 +10,9 @@
             font-family: "Open Sans", sans-serif;
             font-size: 20px;
         }
+
         slider-div {
-            width: 80%;
+            width: 80% !important;
         }
     </style>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
@@ -59,6 +60,8 @@
         <div class="container fade-in" id="main">
             <div class="row">
                 <div class="col1">
+
+                <h2>Choose a charity</h2>
                     <section class="cards">
                         <article class="card card--1">
                             <div class="card__info-hover">
@@ -72,7 +75,7 @@
                                 <span class="card__category">Environmental Charity</span>
                                 <h3 class="card__title">World Wide Fund for Nature Inc. (WWF)</h3>
                                 <!-- <span class="card__by">by <a href="#" class="card__author" title="author">Celeste -->
-                                        <!-- Mills</a></span> -->
+                                <!-- Mills</a></span> -->
                             </div>
                         </article>
                         <article class="card card--2">
@@ -86,10 +89,13 @@
                                 <span class="card__category">Humanitarian Charity</span>
                                 <h3 class="card__title">United Nations Children's Fund</h3>
                                 <!-- <span class="card__by">by <a href="#" class="card__author" title="author">John -->
-                                        <!-- Doe</a></span> -->
+                                <!-- Doe</a></span> -->
                             </div>
                         </article>
                     </section>
+                    <br>
+                    <br>
+                    <h2>Choose an amount to give</h2>
                     <div id="slider-div">
                     </div>
                     <div align="center">
@@ -97,7 +103,6 @@
                     </div>
                 </div>
                 <div class="col2">
-
                     <div class="chat">
                         <div class="chat-title">
                             <h1>Other player</h1>
@@ -119,6 +124,7 @@
         </div>
     </div>
     </div>
+    </div>
 </body>
 
 <script>
@@ -128,7 +134,7 @@
     document.addEventListener('DOMContentLoaded', main);
 
     function main() {
-            
+
         document.querySelector('.card--1').addEventListener('click', function (el) {
             console.log('clicked 1');
             document.querySelectorAll('*').forEach(el => el.classList.remove('selected'));

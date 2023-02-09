@@ -1,0 +1,122 @@
+{% extends "global/Page.html" %}
+
+
+{% block title %}
+    <!--- Timeline of the experiment ---------------------->
+    <div class="md-stepper-horizontal black" id="timeline">
+        <div class="md-step active" id="instructions">
+            <div class="md-step-circle"></div>
+            <div class="md-step-title">Instructions</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </div>
+        <div class="md-step" id="training">
+            <div class="md-step-circle"></div>
+            <div class="md-step-title">Training</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </div>
+        <div class="md-step" id="experiment">
+            <div class="md-step-circle"></div>
+            <div class="md-step-title">Experiment</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </div>
+        <div class="md-step" id="questionnaire">
+            <div class="md-step-circle"></div>
+            <div class="md-step-title">Survey</div>
+            <div class="md-step-bar-left"></div>
+            <div class="md-step-bar-right"></div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <!-------------------------------------------------->
+{% endblock %}
+
+{% block content %}
+
+    <h2 id="title" class="container fade-in"></h2>
+    <div id="text" class="container fade-in">
+    </div>
+
+    <div class="row fade-in">
+        <div class="col" align="center" id="col-previous" style="display: none">
+            <button type="button" class="drawn-button" id="previous">PREVIOUS</button>
+        </div>
+        <div class="col" align="center" id="col-next">
+            <button type="button" class="drawn-button" id="next">NEXT</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            document.title = 'Online experiment';
+
+            try {
+                let audio = new Audio('/static/audio/notif.mp3');
+                audio.play();
+                document.title = '(1) Online experiment';
+            }
+            catch {
+                ;
+            }
+            let panels = {{ panels }};
+            let titles = {{ titles }};
+            let max = Math.max(...Object.keys(panels));
+            let index = 1;
+
+            let startTime = Date.now();
+            let timeLimit = {{ instructionsTime }};
+
+            $('#text').html(panels[index]);
+            $('#title').html(titles[index]);
+
+            $('#next').click(function () {
+                index++;
+                $('#text').hide().html(panels[index]).fadeIn(300);
+                $('#title').hide().html(titles[index]).fadeIn(300);
+                if (index > 1) {
+                    $('#col-previous').show();
+                }
+
+                if (index > max) {
+                    $('#main').fadeOut(140);
+                    $('#form').submit();
+                }
+            });
+
+            $('#previous').click(function () {
+                index--;
+                $('#text').hide().html(panels[index]).fadeIn(300)
+                $('#title').hide().html(titles[index]).fadeIn(300)
+                if (index === 1) {
+                    $('#col-previous').hide();
+                }
+                if (index <= max) {
+                    $('#col-next').show();
+                }
+            })
+
+  //          setInterval(function () {
+  //              liveSend('hey');
+  //              if ((Date.now() - startTime) > timeLimit) {
+  //                  $('#main').fadeOut(140);
+  //                  $('#form').submit();
+  //              }
+  //          }, 2000);
+// 
+
+        });
+
+        function liveRecv(data) {
+            if (data === true) {
+                $('#main').fadeOut(140);
+                $('#form').submit();
+            }
+        }
+
+    </script>
+
+{% endblock %}
+

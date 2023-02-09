@@ -1,0 +1,166 @@
+{% extends "global/Page.html" %}
+
+{% block title%}
+        <!--- Timeline of the experiment ---------------------->
+<div class="md-stepper-horizontal black" id="timeline">
+    <div class="md-step" id="instructions">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Instructions</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" id="training">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Training</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step active" id="experiment">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Experiment</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+    <div class="md-step" id="questionnaire">
+        <div class="md-step-circle"></div>
+        <div class="md-step-title">Survey</div>
+        <div class="md-step-bar-left"></div>
+        <div class="md-step-bar-right"></div>
+    </div>
+</div>
+    <br>
+<!-------------------------------------------------->
+{% endblock %}
+
+
+
+
+{% block content %}
+    <div id="main" class="container fade-in">
+        <div class="row">
+            <div class="col">
+
+                <div style="margin-left: 35%;color: gray;font-weight: bolder;">You <br> ↙</div>
+                <div class="box">
+                    <img src="{% static player_character %}">
+                        <div class="text-centered">{{ player.participant.multiplier }}</div>
+                </div>
+            </div>
+            <div class="col">
+            </div>
+        </div>
+        <br>
+        <p>
+            Your total number of points is <b>{{ total }}</b><br>
+            Your multiplier is <b  style="color: {{ player_color }}">{{ player.participant.multiplier }}</b> <br>
+            You've been endowed with <b>{{ Constants.endowment }}</b> additional points.<br>
+            Do you want to <b>disclose</b> your <b>multiplier</b> to the other player? If you do, you will spend <b> {{ Constants.disclosure_cost}} points.</b>
+        </p>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col" align="center">
+                <button type="button" class="drawn-button" id="disc">DISCLOSE</button>
+            </div>
+            <div class="col" align="center">
+                <button type="button" class="drawn-button" id="hide">HIDE</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+
+        let loopSend;
+
+        $(document).ready(function () {
+            if ({{ training }}) {
+                setActiveCurrentStep('training');
+            }
+
+            let templateReal = `{{ modalReal }}`;
+
+            if ({{ real }}) {
+                $('#main').append(templateReal);
+                //$("#modalReal").modal();#}
+                $('#modalReal').modal('show');
+                //setTimeout(function () {#}
+                //    $('#modalReal').modal('hide');#}
+                //    $('#modalReal').remove();}, 4000); #}
+
+            }
+
+            let startTime = Date.now();
+            let RT;
+            let disclose;
+
+            let templateWait = `{{ html }}`;
+
+            $('#disc').click(function () {
+                choice(1, startTime);
+            });
+
+            $('#hide').click(function () {
+                choice(0, startTime);
+            });
+
+            function choice(value, startTime) {
+
+                RT = Date.now() - startTime;
+                var startTime = Date.now();
+                disclose = value;
+                liveSend(   
+                    {
+                        time: Date.now() - startTime,
+                        RT: RT,
+                        disclose: disclose
+                    }
+                );
+
+                setTimeout(() => {
+                    $('#main').append(templateWait);
+                    $("#modalWait").modal({
+                        backdrop: 'static',
+                        keyboard: false
+                    });
+                    $('#modalWait').modal('show');
+                }, 1000);
+
+                setInterval(() => {
+                        var wait = document.getElementById("wait");
+
+                        if (wait.innerHTML.length >= 3)
+                            wait.innerHTML = "";
+                        else
+                            wait.innerHTML += ".";
+
+                }, 1000);
+
+                loopSend = setInterval(() => {
+                    liveSend(
+                        {
+                            time: Date.now() - startTime,
+                            RT: RT,
+                            disclose: disclose
+                        });
+                }, 1000);
+
+            }
+        });
+
+        function liveRecv(data) {
+                if (data === true) {
+                    //console.log('RT = ' + RT);
+                    //console.log('Disclose = ' + disclose);
+                    //$('#RT').val(RT);
+                    //$('#disclose').val(disclose);
+                    clearInterval(loopSend);
+                    $('#main').fadeOut(140);
+                    $('#form').submit();
+                    console.log('submitting form');
+                }
+            }
+    </script>
+
+
+{% endblock %}

@@ -44,13 +44,9 @@ function insertMessage() {
     `)}, 3000);
 
     setDate();
+    $('.messages').animate({ scrollTop: $('.messages').prop('scrollHeight') }, 300);
 
 }
-
-$('.message-submit').on('click', function () {
-    alert('click')
-    insertMessage();
-});
 
 $(window).on('keydown', function (e) {
     if (e.which == 13) {

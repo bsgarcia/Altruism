@@ -2,8 +2,8 @@
 .chat {
     width: 100%;
     height: 100%;
-    /* max-height: 500px; */
-    z-index: 2;
+    max-height: 800px;
+    /* z-index: 2; */
     overflow: hidden;
     box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
     background: rgba(255, 255, 255, 0);
@@ -11,6 +11,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    /* max-height: 100%; */
 }
 /*-------------------- Chat Title --------------------*/
 .chat-title {
@@ -23,17 +24,20 @@
     text-align: left;
     padding: 10px 10px 10px 50px;
 }
+
 .chat-title h1, .chat-title h2 {
     font-weight: normal;
     font-size: 10px;
     margin: 0;
     padding: 0;
 }
+
 .chat-title h2 {
     color: rgba(255, 255, 255, .5);
     font-size: 8px;
     letter-spacing: 1px;
 }
+
 .chat-title .avatar {
     position: absolute;
     z-index: 1;
@@ -55,10 +59,43 @@
 .messages {
     flex: 1 1 auto;
     /* color: rgba(255, 255, 255, .5); */
-    overflow: hidden;
+    overflow-y: scroll;
     position: relative;
     width: 100%;
+    height: 70%;
+    max-height: 70%;
 }
+
+.suggestion {
+    border: #B18FC2 1.5px solid;
+    border-radius: .8em;
+    color: #B18FC2;
+    padding: 0.5em;
+    font-size: small;
+    /*! margin: 5%; */
+    width: 50%;
+    float: right;
+    text-align: center;
+    margin-bottom: 2%;
+    margin-right: 10%;
+}
+
+.suggestion:hover {
+    border: #B18FC2 1.5px solid;
+    border-radius: .8em;
+    color: white;
+    background-color: #B18FC2;
+    padding: 0.5em;
+    font-size: small;
+    /*! margin: 5%; */
+    width: 50%;
+    float: right;
+    text-align: center;
+    margin-bottom: 2%;
+    margin-right: 10%;
+    cursor: pointer;
+}
+
 .messages .messages-content {
     /* position: absolute; */
     /* top: 0; */
@@ -219,7 +256,7 @@
     /* position: absolute; */
     float: right;
     margin-right:10%;
-    z-index: 1;
+    /* z-index: 1; */
     /* top: 9px; */
     /* right: 10px; */
     color: rgb(0, 0, 0);

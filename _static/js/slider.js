@@ -63,6 +63,11 @@ class SliderManager {
 
         return slider;
     }
+    
+    static getValue() {
+        return parseFloat($('#slider').val());
+    }
+
     static listenOnArrowKeys() {
         document.onkeydown = checkKey;
 
@@ -85,7 +90,7 @@ class SliderManager {
 
         }
     }
-    static listenOnSlider(clickArgs, clickFunc) {
+    static listenOnSlider(clickArgs, clickFunc, onChange) {
 
         rangeInputRun();
         let slider = document.getElementById('slider');
@@ -94,6 +99,7 @@ class SliderManager {
 
         form.oninput = function () {
             output.value = slider.value;
+            onChange()
         };
 
         clickArgs.slider = slider;

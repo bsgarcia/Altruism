@@ -78,27 +78,29 @@
 }
 
 .card__img--hover {
-  transition: 0.2s all ease-out;
+    transition: 0.2s all ease-out;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;
-  position: absolute;
+    position: absolute;
     height: 235px;
-  border-top-left-radius: 12px;
-border-top-right-radius: 12px;
-top: 0;
-  
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    top: 0;
 }
+
 .card {
-  margin-right: 25px;
-  transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
-  background-color: #fff;
+    margin-right: 25px;
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1); 
+    background-color: #fff;
+    border: transparent 5px solid;
+    box-shadow: 0px 30px 18px -8px rgba(41, 97, 228, 0.1);
     width: 33.3%;
-  position: relative;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
 }
 
 .card:hover {
@@ -107,22 +109,22 @@ top: 0;
 
 .selected {
     border:rgb(33, 150, 243) 5px solid;
-  box-shadow: 0px 30px 18px -8px rgba(41, 97, 228, 0.1);
-    transform: scale(1.10, 1.10);
+    box-shadow: 0px 30px 18px -8px rgba(41, 97, 228, 0.1);
+    /* transform: scale(1.10, 1.10); */
 
 }
 
 .card:hover {
-  box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
     transform: scale(1.10, 1.10);
 }
 
 .card__info {
-z-index: 2;
-  background-color: #fff;
-  border-bottom-left-radius: 12px;
-border-bottom-right-radius: 12px;
-   padding: 16px 24px 24px 24px;
+    z-index: 2;
+    background-color: #fff;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    padding: 16px 24px 24px 24px;
 }
 
 .card__category {
@@ -131,7 +133,7 @@ border-bottom-right-radius: 12px;
     font-size: 13px;
     letter-spacing: 2px;
     font-weight: 500;
-  color: #868686;
+    color: #868686;
 }
 
 .card__title {

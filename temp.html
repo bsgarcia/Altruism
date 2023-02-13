@@ -11,7 +11,7 @@
             font-size: 20px;
         }
 
-        slider-div {
+        #slider-div {
             width: 80% !important;
         }
     </style>
@@ -115,8 +115,12 @@
                             <div class="messages-content"></div>
                         </div>
                         <div class="message-box">
-                            <textarea type="text" class="message-input" placeholder="Type message..."></textarea>
-                            <button type="submit" class="message-submit">Send</button>
+                            <div id='suggestion-charity' class="suggestion">I want to give to WWF</div>
+                            <div id='suggestion-amount' class="suggestion">I want to give X euros</div>
+                            <div id='suggestion-ok' class="suggestion">Ok!</div>
+                            <div id='suggestion-no' class="suggestion">No!</div>
+                            <textarea type="text" class="message-input" placeholder="select message..." disabled></textarea>
+                            <button id="send" type="submit" class="message-submit matter-button-contained">Send</button>
                         </div>
                     </div>
                 </div>
@@ -134,21 +138,31 @@
     document.addEventListener('DOMContentLoaded', main);
 
     function main() {
-
+            
         document.querySelector('.card--1').addEventListener('click', function (el) {
             console.log('clicked 1');
-            document.querySelectorAll('*').forEach(el => el.classList.remove('selected'));
+            document.querySelector('.card--2').classList.remove('selected');
             this.classList.add('selected');
+            document.querySelector('#suggestion-charity').innerHTML = 'I want to give to WWF';
         });
 
         document.querySelector('.card--2').addEventListener('click', function (el) {
             console.log('clicked 2');
             console.log(el)
-            document.querySelectorAll('*').forEach(el => el.classList.remove('selected'));
+            document.querySelector('.card--1').classList.remove('selected');
             this.classList.add('selected');
+            document.querySelector('#suggestion-charity').innerHTML = 'I want to give to UNICEF';
+        });
+            
+        document.querySelectorAll('.suggestion').forEach(function (el) {
+            el.addEventListener('click', function (el) {
+                console.log('clicked suggestion');
+                console.log(el)
+                document.querySelector('.message-input').value = el.target.innerHTML;
+            });
         });
 
-
+        document.querySelector('#send').addEventListener('click', ()=>insertMessage())
 
         // if ({{ training }}) {
         // setActiveCurrentStep('training');
@@ -176,10 +190,19 @@
 
         appendElement('slider-div', elSlider);
 
+        // replace suggestion amount by slider value
+        document.getElementById('suggestion-amount').innerText = 'I want to give ' + SliderManager.getValue().toString() + ' euros';
+
         // listen on events
         SliderManager.listenOnSlider({}, function (event) {
             let value = event.data.slider.value;
-            choice(value, startTime);
+            //choice(value, startTime);
+        }, function (event) {
+            let el = document.getElementById('suggestion-amount');
+            // Replace any digit by value of the slider
+            el.innerText = el.innerText.replace(/\d/g, SliderManager.getValue());
+            console.log(value)
+            //choice(value, startTime);
         });
 
         // allows to change value using left and right arrows

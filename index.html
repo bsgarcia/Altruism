@@ -161,7 +161,6 @@
             if (this.classList.contains('selected'))
                     return
 
-            toggleSlider()
             console.log('clicked 1');
             document.querySelectorAll('.card').forEach(x=>x.classList.remove('selected'));
             this.classList.add('selected');
@@ -174,7 +173,6 @@
             if (this.classList.contains('selected'))
                     return
 
-            toggleSlider()
             console.log('clicked 2');
             document.querySelectorAll('.card').forEach(x=>x.classList.remove('selected'));
             this.classList.add('selected');
@@ -211,7 +209,6 @@
             let div = document.querySelector('.range');
             let slider = document.querySelector('#slider');
             let rangeslider = document.querySelector('#js-rangeslider-0');
-
             if (div.classList.contains('disabled')) {
                 slider.disabled = false;
                 document.querySelector('#js-rangeslider-0').disabled = false;

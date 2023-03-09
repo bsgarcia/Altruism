@@ -1,5 +1,16 @@
+b {
+    color:#B18FC2;
+}
 .row {
     display: grid;
+}
+
+.div-validate {
+    margin-top: 8%;    
+}
+
+.btn-validate {
+    background-color: #B18FC2 !important;
 }
 
 .col1 {
@@ -19,7 +30,7 @@
 /* cards */ 
 
 .cards {
-    width: 100%;
+    width: 90%;
     display: flex;
     display: -webkit-flex;
     justify-content: center;
@@ -35,6 +46,11 @@
 .card--2 .card__img, .card--2 .card__img--hover {
     background-image: url('https://assets.puzzlefactory.pl/puzzle/244/111/original.webp');
 }
+
+.card--3 .card__img, .card--3 .card__img--hover {
+    background-image: url('../img/dontgive.png');
+}
+
 
 .card__like {
     width: 18px;
@@ -108,7 +124,8 @@
 }
 
 .selected {
-    border:rgb(33, 150, 243) 5px solid;
+    /* border:rgb(33, 150, 243) 5px solid; */
+    border: #B18FC2 5px solid;
     box-shadow: 0px 30px 18px -8px rgba(41, 97, 228, 0.1);
     /* transform: scale(1.10, 1.10); */
 

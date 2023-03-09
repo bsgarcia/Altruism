@@ -24,6 +24,12 @@
     flex-basis: 100%;
 }
 
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    filter: blur(.06em);
+}
+
 .range input[type=range] {
     -webkit-appearance: none;
     -moz-appearance: none;

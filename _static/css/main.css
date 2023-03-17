@@ -1,12 +1,13 @@
 b {
-    color:#B18FC2;
+    color: #B18FC2;
 }
+
 .row {
     display: grid;
 }
 
 .div-validate {
-    margin-top: 8%;    
+    margin-top: 8%;
 }
 
 .btn-validate {
@@ -23,14 +24,16 @@ b {
     grid-row: 1;
 }
 
-.col3{    
+.col3 {
     grid-column: 3;
     grid-row: 1;
 }
-/* cards */ 
+
+/* cards */
 
 .cards {
     width: 90%;
+    height: 55%;
     display: flex;
     display: -webkit-flex;
     justify-content: center;
@@ -39,16 +42,19 @@ b {
 }
 
 
-.card--1 .card__img, .card--1 .card__img--hover {
+.card--1 .card__img,
+.card--1 .card__img--hover {
     background-image: url('https://cdn.futura-sciences.com/cdn-cgi/image/width=1920,quality=60,format=auto/sources/images/actu/Logo-WWF_reference.jpg');
 }
 
-.card--2 .card__img, .card--2 .card__img--hover {
+.card--2 .card__img,
+.card--2 .card__img--hover {
     background-image: url('https://assets.puzzlefactory.pl/puzzle/244/111/original.webp');
 }
 
-.card--3 .card__img, .card--3 .card__img--hover {
-    background-image: url('../img/dontgive.png');
+.card--3 .card__img,
+.card--3 .card__img--hover {
+    background-image: url('../img/donotgive.png');
 }
 
 
@@ -58,9 +64,10 @@ b {
 
 .card__clock {
     width: 15px;
-  vertical-align: middle;
+    vertical-align: middle;
     fill: #AD7D52;
 }
+
 .card__time {
     font-size: 12px;
     color: #AD7D52;
@@ -73,7 +80,7 @@ b {
 }
 
 .card__img {
-  /* visibility: hidden; */
+    /* visibility: hidden; */
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -82,15 +89,15 @@ b {
     /* height: 300%; */
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
-  
+
 }
 
 .card__info-hover {
     position: absolute;
     padding: 16px;
-  width: 100%;
-  opacity: 0;
-  top: 0;
+    width: 100%;
+    opacity: 0;
+    top: 0;
 }
 
 .card__img--hover {
@@ -108,7 +115,7 @@ b {
 
 .card {
     margin-right: 25px;
-    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1); 
+    transition: all .4s cubic-bezier(0.175, 0.885, 0, 1);
     background-color: #fff;
     border: transparent 5px solid;
     box-shadow: 0px 30px 18px -8px rgba(41, 97, 228, 0.1);
@@ -116,7 +123,7 @@ b {
     position: relative;
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
@@ -132,7 +139,7 @@ b {
 }
 
 .card:hover {
-    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0,0.1);
+    box-shadow: 0px 30px 18px -8px rgba(0, 0, 0, 0.1);
     transform: scale(1.10, 1.10);
 }
 
@@ -145,7 +152,7 @@ b {
 }
 
 .card__category {
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     text-transform: uppercase;
     font-size: 13px;
     letter-spacing: 2px;
@@ -156,12 +163,12 @@ b {
 .card__title {
     margin-top: 5px;
     margin-bottom: 10px;
-    font-family: 'Roboto Slab', serif;
+    /* font-family: 'Roboto Slab', serif; */
 }
 
 .card__by {
     font-size: 12px;
-    font-family: 'Raleway', sans-serif;
+    /* font-family: 'Raleway', sans-serif; */
     font-weight: 500;
 }
 
@@ -186,13 +193,14 @@ b {
 }
 
 .responsive {
-  width: 100%;
-  height: auto;
+    width: 100%;
+    height: auto;
 }
 
-.box{
+.box {
     position: relative;
-    display: inline-block; /* Make the width of box same as image */
+    display: inline-block;
+    /* Make the width of box same as image */
 }
 
 .container {
@@ -200,7 +208,7 @@ b {
     height: 100%;
 }
 
-.box .text-centered{
+.box .text-centered {
     position: absolute;
     z-index: 999;
     margin: 0 auto;
@@ -208,13 +216,14 @@ b {
     font-size: 30px;
     left: 0;
     right: 5%;
-    top: 53%; /* Adjust this value to move the positioned div up and down */
+    top: 53%;
+    /* Adjust this value to move the positioned div up and down */
     text-align: center;
     width: 60%;
 }
 
 .drawn-button {
-    background: url("../img/button.png") ;
+    background: url("../img/button.png");
     background-size: 100%;
     background-repeat: no-repeat;
     text-align: center;
@@ -226,8 +235,9 @@ b {
     transform: scale(0.95, 0.95);
     transition-duration: .2s;
 }
+
 .drawn-button:hover {
-    background: url("../img/button_hover.png") ;
+    background: url("../img/button_hover.png");
     background-size: 100%;
     background-repeat: no-repeat;
     text-align: center;
@@ -241,27 +251,29 @@ b {
 }
 
 
-.img-center {margin:0 auto;}
+.img-center {
+    margin: 0 auto;
+}
 
 
 button::-moz-focus-inner {
-  border: 0;
+    border: 0;
 }
 
 .fade-in {
-  animation: fadeIn 2s;
-  -webkit-animation: fadeIn 2s;
-  -moz-animation: fadeIn 2s;
-  -o-animation: fadeIn 2s;
-  -ms-animation: fadeIn 2s;
+    animation: fadeIn 2s;
+    -webkit-animation: fadeIn 2s;
+    -moz-animation: fadeIn 2s;
+    -o-animation: fadeIn 2s;
+    -ms-animation: fadeIn 2s;
 }
 
 .fade-in-var {
-  animation: fadeIn var(--time);
-  -webkit-animation: fadeIn var(--time);
-  -moz-animation: fadeIn var(--time);
-  -o-animation: fadeIn var(--time);
-  -ms-animation: fadeIn var(--time);
+    animation: fadeIn var(--time);
+    -webkit-animation: fadeIn var(--time);
+    -moz-animation: fadeIn var(--time);
+    -o-animation: fadeIn var(--time);
+    -ms-animation: fadeIn var(--time);
 }
 
 .fade-out {
@@ -276,62 +288,117 @@ button::-moz-focus-inner {
     border-top-left-radius: 255px 15px !important;
     border-top-right-radius: 15px 225px !important;
     border-bottom-right-radius: 225px 15px !important;
-    border-bottom-left-radius:15px 255px !important;
+    border-bottom-left-radius: 15px 255px !important;
 }
 
 .blur {
     -webkit-filter: blur(5px);
-  -moz-filter: blur(5px);
-  -o-filter: blur(5px);
-  -ms-filter: blur(5px);
-  filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
 }
 
 @keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 @-moz-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 @-webkit-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 @-o-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 @-ms-keyframes fadeIn {
-  0% {opacity:0;}
-  100% {opacity:1;}
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
 
 
 
-@keyframes fadeOut{
-  100% {opacity:1;} 0% {opacity:0;}
+@keyframes fadeOut {
+    100% {
+        opacity: 1;
+    }
+
+    0% {
+        opacity: 0;
+    }
 }
 
 @-moz-keyframes fadeOut {
-    100% {opacity:1;} 0% {opacity:0;}
+    100% {
+        opacity: 1;
+    }
+
+    0% {
+        opacity: 0;
+    }
 }
 
-@-webkit-keyframes fadeOut{
-    100% {opacity:1;} 0% {opacity:0;}
+@-webkit-keyframes fadeOut {
+    100% {
+        opacity: 1;
+    }
+
+    0% {
+        opacity: 0;
+    }
 }
 
-@-o-keyframes fadeOut{
-    100% {opacity:1;} 0% {opacity:0;}
+@-o-keyframes fadeOut {
+    100% {
+        opacity: 1;
+    }
+
+    0% {
+        opacity: 0;
+    }
 }
 
-@-ms-keyframes fadeOut{
-    100% {opacity:1;} 0% {opacity:0;}
+@-ms-keyframes fadeOut {
+    100% {
+        opacity: 1;
+    }
+
+    0% {
+        opacity: 0;
+    }
 }
 
 
@@ -343,24 +410,24 @@ button::-moz-focus-inner {
     background-color: #FFFFFF;
     background-size: 70px;
 
-   /* box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .50);*/
+    /* box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .50);*/
 }
 
 
 @media only screen and (min-width: 300px) and (max-width: 1100px) {
     /*.img-responsive {*/
-        /*max-width: 160% !important;*/
+    /*max-width: 160% !important;*/
     /*}*/
 
     /*.col-xs-4 {*/
-        /*max-width: 160% !important;*/
+    /*max-width: 160% !important;*/
     /*}*/
     /*.col-md-4 {*/
-        /*max-width: 160% !important;*/
+    /*max-width: 160% !important;*/
     /*}*/
     /**/
     /*.img-responsive {*/
-        /*max-width: 160% !important;*/
+    /*max-width: 160% !important;*/
     /*}*/
     .md-stepper-horizontal {
         /*background: url('images/logo-ens.png') no-repeat 1% 50%;*/
@@ -379,8 +446,8 @@ button::-moz-focus-inner {
         height: 15px !important;
         width: 15px !important;
     }
-    .card
-    {
+
+    .card {
         width: 70% !important;
     }
 

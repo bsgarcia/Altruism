@@ -1,0 +1,89 @@
+.otree-body {
+    max-width: 1200px !important;
+}
+
+.otree-chat {
+    width: 95%;
+    height: 100%;
+    max-height: 800px;
+    /* z-index: 2; */
+    overflow: hidden;
+    box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+    background: rgba(255, 255, 255, 0);
+    border-radius: .5em;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border-color:white !important;
+    /* max-height: 100%; */
+}
+
+.otree-chat__nickname {
+    display: none !important;
+}
+
+.otree-chat__messages {
+    height: 85% !important;
+    max-height: 85%;
+    font-size: 14px;
+    background-color: white !important;
+    /* display: grid; */
+}
+
+.otree-chat__msg {
+    float: right;
+    clear: both;
+    color: #fff;
+    text-align: right;
+    /* background: linear-gradient(120deg, #74248a, #257287); */
+    background-color: #B18FC2;
+    border-radius: 10px 10px 0 10px;
+    margin-right: 10%;
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: 5px solid transparent;
+    border-top: 4px solid #B18FC2;
+    bottom: -4px;
+    padding: 5px 5px 5px 5px;
+    width: fit-content;
+    justify-self: self-end;
+    margin: .5%;
+    display: none;
+}
+
+.otree-chat__msg-other {
+    float: left;
+    clear: both;
+    color: #fff;
+    text-align: left;
+    /* background: linear-gradient(120deg, #74248a, #257287); */
+    background-color: gray;
+    border-radius: 10px 10px 10px 0;
+    margin-right: 10%;
+    left: auto;
+    right: 0;
+    border-right: none;
+    border-left: 5px solid transparent;
+    border-top: 4px solid gray;
+    bottom: -4px;
+    padding: 5px 5px 5px 5px;
+    width: fit-content;
+    justify-self: self-start;
+    margin: .5%;
+}
+
+.otree-chat__btn-send {
+    /* @extend .matter-button-contained .btn-validate; */
+    background-color: #5482ae;
+    color: white;
+    border-radius: .5em;
+    border-color: white;
+    /* box-shadow: none; */
+ }
+ 
+ input {
+    border-radius: .5em;
+    border-color: white;
+   /* box-shadow: none;*/
+ }

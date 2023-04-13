@@ -1,7 +1,7 @@
 from altruism._builtin import Page
 
 from .models import Constants
-import numpy as np
+# import numpy as np
 import time
 from settings import pounds_per_point
 
@@ -201,8 +201,26 @@ class Results(Page):
 
         }
 
+class Main(Page):
+    def get_template_name(self):
+        if self.participant.is_dropout:
+            return 'altruism/Dropout.html'
+        # if not dropout then execute the original method
+        return super().get_template_name()
+    
+    def vars_for_template(self):
+        charity_names = self.session.config.get('charities')
+        endowment = self.session.config.get('endowment')
+        charities = {charity: f'img/{charity}.png' for charity in charity_names}.items()
 
-page_sequence = [Instructions, Disclose, Contribute, Results, End]
+        return {
+            'charities': charities,
+            'endowment': endowment,
+        }
+
+        
+# page_sequence = [Instructions, Disclose, Contribute, Results, End]
+page_sequence = [Main]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions #                                                                                                    # 

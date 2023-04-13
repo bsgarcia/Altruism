@@ -11,10 +11,12 @@ SESSION_CONFIGS = [
         dropout_time=120,
         results_time=7.5,
         app_sequence=['altruism'],
-        training_round_number=3,
-        n_bad_multiplier=5,
-        number_of_rounds_against_bad=30,
-        number_of_rounds_against_good=30,
+        charities=['wwf', 'savethechildren', 'thenatureconservancy', 'unicef'],
+        endowment=10,
+        # training_round_number=3,
+        # n_bad_multiplier=5,
+        # number_of_rounds_against_bad=30,
+        # number_of_rounds_against_good=30,
     ),
 ]
 

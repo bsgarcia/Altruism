@@ -4,6 +4,7 @@ b {
 
 .row {
     display: grid;
+    grid-template-columns: 60% 40%;
 }
 
 .div-validate {
@@ -17,6 +18,7 @@ b {
 .col1 {
     grid-column: 1;
     grid-row: 1;
+    /* grid-column: span 2; */
 }
 
 .col2 {
@@ -44,7 +46,7 @@ b {
 
 .card--1 .card__img,
 .card--1 .card__img--hover {
-    background-image: url('https://cdn.futura-sciences.com/cdn-cgi/image/width=1920,quality=60,format=auto/sources/images/actu/Logo-WWF_reference.jpg');
+    /* background-image: url('https://cdn.futura-sciences.com/cdn-cgi/image/width=1920,quality=60,format=auto/sources/images/actu/Logo-WWF_reference.jpg'); */
 }
 
 .card--2 .card__img,
@@ -81,7 +83,7 @@ b {
 
 .card__img {
     /* visibility: hidden; */
-    background-size: cover;
+    background-size: contain;
     background-position: center;
     background-repeat: no-repeat;
     width: 100%;

@@ -1,8 +1,13 @@
 /* -------  global style -----------------------------------------------------------------------------------*/
+#slider-div {
+    width: 80% !important;
+}
+
 .custom-button {
     background-color: royalblue;
     color: #FFFFFF;
 }
+
 .custom-button:hover {
     color: #FFFFFF;
 }
@@ -10,9 +15,10 @@
 .stim {
     width: 100%;
     height: auto;
-    max-width:200px;
+    max-width: 200px;
     margin-top: 5%;
 }
+
 /* -------  Range slider style -----------------------------------------------------------------------------*/
 .range {
     position: relative;

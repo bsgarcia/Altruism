@@ -35,12 +35,14 @@ b {
 
 .cards {
     width: 90%;
-    height: 55%;
+    height: 25%;
     display: flex;
     display: -webkit-flex;
     justify-content: center;
     -webkit-justify-content: center;
     max-width: 820px;
+    margin-bottom: 30%;
+    margin-top: 20%;
 }
 
 

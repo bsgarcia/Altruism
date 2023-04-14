@@ -16,7 +16,19 @@
     flex-direction: column;
     border-color:white !important;
     /* max-height: 100%; */
+    
 }
+.otree-chat:before {
+    font-size: 30px;
+    content: "Chat";
+    color: #B18FC2;
+    /*! border-top: solid 50px #B18FC2 !important; */
+    /*! position:relative; */
+    /*! top: -50px; */
+    align-self: center;
+    font-weight: bold;
+}
+
 
 .otree-chat__nickname {
     display: none !important;
@@ -27,6 +39,7 @@
     max-height: 85%;
     font-size: 14px;
     background-color: white !important;
+    padding: 10px;
     /* display: grid; */
 }
 
@@ -38,7 +51,7 @@
     /* background: linear-gradient(120deg, #74248a, #257287); */
     background-color: #B18FC2;
     border-radius: 10px 10px 0 10px;
-    margin-right: 10%;
+    margin-right: 5% !important;
     left: auto;
     right: 0;
     border-right: none;
@@ -48,8 +61,28 @@
     padding: 5px 5px 5px 5px;
     width: fit-content;
     justify-self: self-end;
-    margin: .5%;
+    margin: 1.8%;
     display: none;
+}
+
+.stamp-me:before {
+    color: grey;
+    font-size: 10px;
+    position: relative;
+    top: -25px;
+    float: right;
+    content: "me";
+    /*! line-height: ; */
+}
+
+.stamp-other:before {
+    color: grey;
+    font-size: 10px;
+    position: relative;
+    top: -25px;
+    float: left;
+    content: "other player";
+    /*! line-height: ; */
 }
 
 .otree-chat__msg-other {
@@ -60,7 +93,7 @@
     /* background: linear-gradient(120deg, #74248a, #257287); */
     background-color: gray;
     border-radius: 10px 10px 10px 0;
-    margin-right: 10%;
+    margin-left: 5% !important;
     left: auto;
     right: 0;
     border-right: none;
@@ -70,7 +103,7 @@
     padding: 5px 5px 5px 5px;
     width: fit-content;
     justify-self: self-start;
-    margin: .5%;
+    margin: 1.8%;
 }
 
 .otree-chat__btn-send {

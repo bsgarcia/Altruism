@@ -48,6 +48,12 @@
 	float:right;
 	text-transform:uppercase;
 	padding:10px;
+	border-radius: .5em;
+}
+.materialModalButton:hover{
+	background:rgba(204, 204, 204, 0.517);
+	border-radius: .5em;
+	transition: all 0.3s ease;
 }
 #materialModal.hide{
 	opacity:0;

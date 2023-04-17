@@ -59,7 +59,7 @@ const setUpChatInput = () => {
     el.placeholder = ' '
     let span = document.createElement('span')
     span.id = 'input-text'
-    span.innerText = 'Select an answer'
+    span.innerText = 'Select a message above'
     let label = document.createElement('label')
     label.className = 'matter-textfield-outlined input-chat'
     label.appendChild(el)
@@ -155,7 +155,7 @@ const updateSuggestions = () => {
             //document.querySelector('#input').disabled = false;
             document.querySelector('#input').value = el.target.innerText;
             document.querySelector('#input').dispatchEvent(new Event('input', { bubbles: true }));
-            document.querySelector('#input-text').innerText = 'Your answer';
+            document.querySelector('#input-text').innerText = 'Select a message above';
             //document.querySelector('#input').disabled = true;
 
         });

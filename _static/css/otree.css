@@ -82,7 +82,7 @@
     padding: 5px 5px 5px 5px;
     width: fit-content;
     justify-self: self-end;
-    margin: 1.2%;
+    margin: 2%;
     display: none;
 }
 
@@ -95,16 +95,17 @@
     content: "me";
     /*! line-height: ; */
 }
-
 .stamp-other:before {
     color: grey;
     font-size: 10px;
     position: relative;
-    top: -25px;
+    top: -15px;
     float: left;
     content: "other player";
-    /*! line-height: ; */
+    border-collapse: separate;
+    line-height: 0;
 }
+
 
 .otree-chat__msg-other {
     float: left;
@@ -124,7 +125,7 @@
     padding: 5px 5px 5px 5px;
     width: fit-content;
     justify-self: self-start;
-    margin: 1.2%;
+    margin: 2%;
 }
 
 .otree-chat__btn-send {

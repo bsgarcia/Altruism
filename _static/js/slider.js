@@ -46,7 +46,7 @@ class SliderManager {
     static generateSlider({
                               min = 0, max = 100, step = 5,
                               initValue = 0,
-                              classname = 'slider'
+                              classname = 'slider', currency = '€'
                           } = {}) {
         let slider = `<main style="flex-basis: 100%">
             <form id="form" class="${classname}">
@@ -54,7 +54,7 @@ class SliderManager {
             <input id="slider" name="range" type="range" value="${initValue}" min="${min}" max="${max}" step="${step}">
             <div class="range-output">
             <output id="output" class="output" name="output" for="range">
-            ${initValue}
+            ${initValue}${currency}
              </output>
              </div>
              </div>
@@ -90,7 +90,7 @@ class SliderManager {
 
         }
     }
-    static listenOnSlider(clickArgs, clickFunc, onChange) {
+    static listenOnSlider(clickArgs, clickFunc, onChange, currency = '€') {
 
         rangeInputRun();
         let slider = document.getElementById('slider');
@@ -99,6 +99,7 @@ class SliderManager {
 
         form.oninput = function () {
             output.value = slider.value;
+            output.innerText = slider.value + currency;
             onChange()
         };
 

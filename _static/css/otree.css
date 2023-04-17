@@ -1,5 +1,14 @@
+/* set primary color */
+:root {
+    --matter-primary-rgb: 177, 143, 194;
+}
+
 .otree-body {
     max-width: 1200px !important;
+}
+
+.input-chat {
+    margin-bottom:2%;
 }
 
 .otree-chat {
@@ -8,19 +17,20 @@
     max-height: 800px;
     /* z-index: 2; */
     overflow: hidden;
-    box-shadow: 0 5px 5px rgba(0, 0, 0, .2);
+    box-shadow: 0 5px 30px rgba(0, 0, 0, .2);
+   /* box-shadow: 5px 5px 5px 2px rgba(0, 0, 0, .2);*/
     background: rgba(255, 255, 255, 0);
     border-radius: .5em;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
-    border-color:white !important;
+    border:white 20px solid !important;
     /* max-height: 100%; */
     
 }
 .otree-chat:before {
     font-size: 30px;
-    content: "Chat";
+    content: "🗨 Chat";
     color: #B18FC2;
     /*! border-top: solid 50px #B18FC2 !important; */
     /*! position:relative; */
@@ -38,10 +48,21 @@
     height: 85% !important;
     max-height: 85%;
     font-size: 14px;
-    background-color: white !important;
-    padding: 10px;
+    padding: 15px;
     /* display: grid; */
 }
+
+.otree-chat__messages {
+    overflow: auto;
+    background: #eee;
+    margin: 2px 0 5px 0;
+    /*! border: 1px gray solid; */
+    background-color: #cccccc21 !important;
+    border-color: #cccccc21;
+    border-radius: .3em;
+    border: #cccccc21 2px solid;
+}
+
 
 .otree-chat__msg {
     float: right;
@@ -61,7 +82,7 @@
     padding: 5px 5px 5px 5px;
     width: fit-content;
     justify-self: self-end;
-    margin: 1.8%;
+    margin: 1.2%;
     display: none;
 }
 
@@ -103,7 +124,7 @@
     padding: 5px 5px 5px 5px;
     width: fit-content;
     justify-self: self-start;
-    margin: 1.8%;
+    margin: 1.2%;
 }
 
 .otree-chat__btn-send {

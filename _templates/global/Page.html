@@ -7,7 +7,7 @@
 
 {% block global_styles  %}
     <link href="{% static 'css/otree.css' %}" rel="stylesheet">
-    <!-- <link href="{% static 'css/chat.css' %}" rel="stylesheet"> -->
+    <link href="{% static 'css/chat.css' %}" rel="stylesheet">
     <link href="{% static 'css/material-modal.css' %}" rel="stylesheet">
     <link href="https://res.cloudinary.com/finnhvman/raw/upload/matter/matter-0.2.2.min.css" rel="stylesheet">
 
@@ -36,8 +36,9 @@
     <script src="{% static 'js/tween.umd.js' %}"> </script>
     <script src="{% static 'js/slider.js' %}"> </script>
     <script src="{% static 'js/rough.js' %}"> </script>
-    <script src="{% static 'js/main.js' %}"> </script>
+    <script type="module" src="{% static 'js/main.js' %}"> </script>
     <script src="{% static 'js/chat.js' %}"> </script>
+    <script src="{% static 'js/card-desc.js' %}"> </script>
     <script src="{% static 'js/material-modal.js' %}"> </script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>

@@ -77,7 +77,8 @@
     float: right;
     text-align: center;
     margin-bottom: 2%;
-    margin-right: 10%;
+    margin-right: 5%;
+    transition: all 0.3s ease;
 }
 
 .suggestion:hover {

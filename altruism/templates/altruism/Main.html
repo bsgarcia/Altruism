@@ -2,7 +2,7 @@
 
 
 {% block title %}
-<title>Altruism Experiment</title>
+<title>Altruism Game</title>
 <!--- Timeline of the experiment ---------------------->
 <div class="md-stepper-horizontal black" id="timeline">
     <div class="md-step" id="instructions">
@@ -41,7 +41,7 @@
             <h2>Choose a charity</h2>
             <section class="cards">
                 {% for c, img in charities %}
-                <article name="{{ c }}" class="card card--1">
+                <article id="{{ c }}" class="card card--1">
                     <div class="card__info-hover">
                         <svg class="card__like" viewBox="0 0 24 24">
                     </div>
@@ -58,9 +58,10 @@
                 </article>
                 {% endfor %}
             </section>
-            <br>
-            <br>
+    
             <h2>Choose an amount to give</h2>
+            <br>
+            <br>
             <div id="slider-div"></div>
         </div>
         <div class="col2">
@@ -79,11 +80,11 @@
     {% comment %} document.querySelector('#send').addEventListener('click', () => insertMessage()) {% endcomment %}
     // wait for the DOM and additional scripts to be loaded
     if (document.readyState !== 'loading') {
-        console.log('document is already ready, just execute code here');
+        //console.log('document is already ready, just execute code here');
         window.main();
     } else {
         document.addEventListener('DOMContentLoaded', function () {
-            console.log('document was not ready, place code here');
+            //console.log('document was not ready, place code here');
             window.main();
         });
     }

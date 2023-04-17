@@ -1,3 +1,5 @@
+import { cardDesc } from './card-desc.js';
+
 function setActiveCurrentStep(id) {
     $('#instructions').removeClass('active');
     $('#training').removeClass('active');
@@ -12,12 +14,159 @@ function changeTitle(title) {
     document.title = title;
 }
 
+function toggleSlider(enableOnly = false) {
+    let div = document.querySelector('.range');
+    let slider = document.querySelector('#slider');
+    let rangeslider = document.querySelector('#js-rangeslider-0');
+    if (div.classList.contains('disabled')) {
+        slider.disabled = false;
+        document.querySelector('#js-rangeslider-0').disabled = false;
+        div.classList.remove('disabled');
+        rangeslider.classList.remove('rangeslider-disabled');
+        slider.setAttribute('value', 5);
+        $('#slider').val(5).change()
+        setTimeout(() => {
+            slider.dispatchEvent(new Event('change'));
+            rangeslider.dispatchEvent(new Event('change'))
+        }, 100);
+        return
+    }
 
-window.main = () => {
+    if (enableOnly)
+        return
+
+    slider.setAttribute('value', 0);
+    $('#slider').val(0).change()
+    slider.disabled = true;
+    rangeslider.disabled = true;
+    rangeslider.classList.add('rangeslider-disabled');
+    div.classList.add('disabled');
+    setTimeout(() => {
+        slider.dispatchEvent(new Event('change'));
+        rangeslider.dispatchEvent(new Event('change'))
+    }, 100);
+}
+
+const setUpChatButton = () => {
+    let btn = document.querySelector('.otree-chat__btn-send');
+    btn.className = 'matter-button-contained btn-validate';
+}
+
+const setUpChatInput = () => {
+    let el = document.querySelector('.otree-chat__input').cloneNode();
+    let realEl = document.querySelector('.otree-chat__input')
+    el.className = ''
+    el.placeholder = ' '
+    let span = document.createElement('span')
+    span.id = 'input-text'
+    span.innerText = 'Select an answer'
+    let label = document.createElement('label')
+    label.className = 'matter-textfield-outlined input-chat'
+    label.appendChild(el)
+    label.appendChild(span)
+    realEl.replaceWith(label)
+    el.id = 'input'
+    document.querySelector('#input').disabled = true;
+    // let chat = document.querySelector('.otree-chat')
+    // chat.replaceChild(parent, realEl)
+
+}
+
+const setUpSuggestions = () => {
+    // Create the parent element
+    const messageBox = document.createElement("div");
+    messageBox.classList.add("message-box");
+
+    // Create the suggestion elements
+    const suggestionCharity = document.createElement("div");
+    suggestionCharity.id = "suggestion-charity";
+    suggestionCharity.classList.add("suggestion");
+    suggestionCharity.textContent = "I want to give to WWF";
+
+    const suggestionAmount = document.createElement("div");
+    suggestionAmount.id = "suggestion-amount";
+    suggestionAmount.classList.add("suggestion");
+    suggestionAmount.textContent = "I want to give X euros";
+
+    const suggestionOk = document.createElement("div");
+    suggestionOk.id = "suggestion-ok";
+    suggestionOk.classList.add("suggestion");
+    suggestionOk.textContent = "Ok!";
+
+    const suggestionNo = document.createElement("div");
+    suggestionNo.id = "suggestion-no";
+    suggestionNo.classList.add("suggestion");
+    suggestionNo.textContent = "No!";
+
+    const suggestionValidate = document.createElement("div");
+    suggestionValidate.id = "suggestion-validate";
+    suggestionValidate.classList.add("suggestion");
+    suggestionValidate.textContent = "I will validate";
+
+    // Create the textarea element
+    const messageInput = document.createElement("textarea");
+    messageInput.classList.add("message-input");
+    messageInput.placeholder = "select message...";
+    messageInput.disabled = true;
+
+    // Create the submit button element
+    const sendButton = document.createElement("button");
+    sendButton.id = "send";
+    sendButton.type = "submit";
+    sendButton.classList.add("message-submit", "matter-button-contained");
+    sendButton.textContent = "Send";
+
+    // Append the child elements to the parent element
+    messageBox.appendChild(suggestionCharity);
+    messageBox.appendChild(suggestionAmount);
+    messageBox.appendChild(suggestionOk);
+    messageBox.appendChild(suggestionNo);
+    messageBox.appendChild(suggestionValidate);
+    // messageBox.appendChild(messageInput);
+    // messageBox.appendChild(sendButton);
+
+    let chat = document.querySelector('.otree-chat');
+    let input = document.querySelector('.input-chat');
+    chat.insertBefore(messageBox, input);
+}
+
+const updateSuggestions = () => {
+    document.querySelectorAll('.card').forEach(x => {
+        x.addEventListener('click', (event, el) => {
+
+            if (x.classList.contains('selected'))
+                return
+
+            console.log('clicked ' + x.id);
+            document.querySelectorAll('.card').forEach(i => i.classList.remove('selected'));
+            x.classList.add('selected');
+            document.querySelector('#suggestion-charity').innerHTML = 'I want to give to ' + x.id;
+            document.querySelector('#suggestion-amount').style.display = 'block';
+            let enableOnly = x.id == 'none' ? false : true;
+            toggleSlider(enableOnly = enableOnly);
+        });
+
+    })
+
+    document.querySelectorAll('.suggestion').forEach(function (el) {
+        el.addEventListener('click', function (el) {
+            console.log('clicked suggestion');
+            //console.log(el)
+            //document.querySelector('#input').disabled = false;
+            document.querySelector('#input').value = el.target.innerText;
+            document.querySelector('#input').dispatchEvent(new Event('input', { bubbles: true }));
+            document.querySelector('#input-text').innerText = 'Your answer';
+            //document.querySelector('#input').disabled = true;
+
+        });
+    });
+}
+
+
+const styleChatMessages = () => {
     let msgList = [];
-    let previousSender = undefined;
 
-    setInterval(x => {
+    setInterval(() => {
         let nicknames = Array.from(document.querySelectorAll('.otree-chat__nickname'));
 
         if (nicknames.length == 0) {
@@ -33,6 +182,8 @@ window.main = () => {
         }
         let lastClass = nicknames[0].parentNode.classList[0];
 
+        // check if msg is from me or other
+        // for all messages
         nicknames.map(el => {
 
             if (!el.id) {
@@ -60,11 +211,10 @@ window.main = () => {
         )
 
     }, 1000)
+}
 
-    let startTime = Date.now();
-    let RT;
-    let contribution;
 
+const setUpSlider = () => {
     let min = 0;
     let max = window.max;
     let step = 1;
@@ -82,22 +232,81 @@ window.main = () => {
     appendElement('slider-div', elSlider);
 
     // replace suggestion amount by slider value
-    //document.getElementById('suggestion-amount').innerText = 'I want to give ' + SliderManager.getValue().toString() + ' euros';
+    document.getElementById('suggestion-amount').innerText = 'I want to give ' + SliderManager.getValue().toString() + ' euros';
 
     // listen on events
     SliderManager.listenOnSlider({}, function (event) {
-        let value = event.data.slider.value;
+        let value = event.target.value;
         //choice(value, startTime);
     }, function (event) {
-        //let el = document.getElementById('suggestion-amount');
+        let el = document.getElementById('suggestion-amount');
         // Replace any digit by value of the slider
-        //el.innerText = el.innerText.replace(/\d/g, SliderManager.getValue());
+        el.innerText = el.innerText.replace(/\d+/g, SliderManager.getValue());
         //console.log(value)
         //choice(value, startTime);
     });
 
     // allows to change value using left and right arrows
     SliderManager.listenOnArrowKeys();
+}
+
+const setUpDescription = () => {
+    document.querySelectorAll('.card').forEach(x => {
+        let btnDesc = document.createElement('span');
+        btnDesc.classList.add('btn-desc');
+        btnDesc.innerText = 'read more';
+        let text = `
+        <img class="img-desc" src="/static/img/${x.id}.png" alt="${x.id}">
+        <br><br>
+        <h3><b>Description</b></h3>
+        <p>${cardDesc[x.id]}</p>`;
+        btnDesc.addEventListener('click', () => {
+            console.log('clicked desc');
+            materialAlert('', text, () => console.log('Display description'));
+       })
+        x.appendChild(btnDesc);
+    })
+}
+
+const setUpValidation = () => {
+    //add event listener to the validate button
+    // it opens a material design modal with the confirmation
+    document.querySelector('#ok').addEventListener('click', function (el) {
+        let slider = document.querySelector('#slider');
+        let selected = document.querySelector('.selected');
+        materialConfirm('Confirmation', `You chose to give <b>${slider.value}</b> euros to
+            <b>${selected.getAttribute('id')}</b>.<br><br>
+            Please note that if the other player selected another answer
+            than you (i.e. you did not coordinate with each other) the money will be lost.`,
+            () => { console.log('confirmed') })
+        document.querySelector('#modal').style.display = 'block';
+    });
+}
+
+
+const setUpChat = () => {
+    setUpChatButton();
+    styleChatMessages();
+    setUpChatInput()
+    setUpSuggestions()
+    updateSuggestions()
+}
+
+const setUp = () => {
+    setUpChat()
+    setUpSlider()
+    setUpValidation()
+    setUpDescription()
+}
+
+
+window.main = () => {
+    // changeTitle('Altruism Game')
+    setUp()
+
+    let startTime = Date.now();
+    let RT;
+    let contribution;
 
 
     function choice(value, startTime) {

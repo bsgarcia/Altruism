@@ -211,8 +211,9 @@ class Main(Page):
     def vars_for_template(self):
         charity_names = self.session.config.get('charities')
         endowment = self.session.config.get('endowment')
-        charities = {charity: f'img/{charity}.png' for charity in charity_names}.items()
-
+        charities = [(charity, f'img/{charity}.png') for charity in charity_names]
+        # add a none option
+        charities = charities + [('none', 'img/none_of_them.png')] 
         return {
             'charities': charities,
             'endowment': endowment,

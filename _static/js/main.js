@@ -252,6 +252,8 @@ const setUpSlider = () => {
 
 const setUpDescription = () => {
     document.querySelectorAll('.card').forEach(x => {
+        if (x.id=='none') return
+
         let btnDesc = document.createElement('span');
         btnDesc.classList.add('btn-desc');
         btnDesc.innerText = 'read more';

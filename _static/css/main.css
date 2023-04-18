@@ -264,7 +264,8 @@ b {
     padding: .4em;
     background-color: orange;
     color:white;
-    font-size: 70%;
+    font-size: 47%;
+    font-weight: bold;
     margin: 12%;
     z-index: 1;
 }
@@ -275,7 +276,7 @@ b {
     padding: .4em;
     background-color:rgb(109, 75, 12);
     color:white;
-    font-size: 70%;
+    /*font-size: 70%;*/
     margin: 12%;
 }
 

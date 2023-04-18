@@ -51,16 +51,6 @@
 
     <script>
         $(document).ready(function () {
-            document.title = 'Online experiment';
-
-            try {
-                let audio = new Audio('/static/audio/notif.mp3');
-                audio.play();
-                document.title = '(1) Online experiment';
-            }
-            catch {
-                ;
-            }
             let panels = {{ panels }};
             let titles = {{ titles }};
             let max = Math.max(...Object.keys(panels));

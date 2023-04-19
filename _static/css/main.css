@@ -263,19 +263,27 @@ b {
     border-radius: .5em;
     padding: .4em;
     background-color: orange;
-    color:white;
-    font-size: 47%;
+    color: white;
+    font-size: 46%;
     font-weight: bold;
     margin: 12%;
     z-index: 1;
+    display: flex;
+}
+
+.btn-desc p {
+    margin: 0;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn-desc:hover {
     border: 2px solid rgb(109, 75, 12);
     border-radius: .5em;
     padding: .4em;
-    background-color:rgb(109, 75, 12);
-    color:white;
+    background-color: rgb(109, 75, 12);
+    color: white;
     /*font-size: 70%;*/
     margin: 12%;
 }

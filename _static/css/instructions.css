@@ -1,0 +1,15 @@
+.btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5%;
+}
+
+.inst-container {
+    width: 70% !important;
+    margin: auto;
+}
+
+.inst-btn {
+    margin: 1% !important;
+}

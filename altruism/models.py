@@ -10,19 +10,21 @@ from otree.api import (
 )
 # import otree.database
 # import sqlite3
-# import numpy as np
+import numpy as np
 import random
 from requests import session
 from utils.debug import logger
 from settings import export_style
 import shutil
 
-
 class Constants(BaseConstants):
     name_in_url = 'altruism'
     players_per_group = 2
-    num_rounds = 1
+    num_rounds = 3
     endowment = 10
+    multiplier_good = 2.5
+    multiplier_bad = 1.5
+    disclosure_cost=  2
 
 
 class Subsession(BaseSubsession):

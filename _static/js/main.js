@@ -224,7 +224,7 @@ const setUpSlider = () => {
     // generate html
     let sliderHTML = SliderManager.generateSlider({
         text: '',
-        min: min, max: max, step: step, initValue: initValue
+        min: min, max: max, step: step, initValue: initValue, currency:'£'
     });
     let elSlider = document.createElement('div');
     elSlider.innerHTML = sliderHTML;
@@ -232,7 +232,7 @@ const setUpSlider = () => {
     appendElement('slider-div', elSlider);
 
     // replace suggestion amount by slider value
-    document.getElementById('suggestion-amount').innerText = 'I want to give ' + SliderManager.getValue().toString() + ' euros';
+    document.getElementById('suggestion-amount').innerText = 'I want to give ' + SliderManager.getValue().toString() + ' pounds';
 
     // listen on events
     SliderManager.listenOnSlider({}, function (event) {
@@ -244,7 +244,7 @@ const setUpSlider = () => {
         el.innerText = el.innerText.replace(/\d+/g, SliderManager.getValue());
         //console.log(value)
         //choice(value, startTime);
-    });
+    }, '£');
 
     // allows to change value using left and right arrows
     SliderManager.listenOnArrowKeys();
@@ -255,8 +255,9 @@ const setUpDescription = () => {
         if (x.id=='none') return
 
         let btnDesc = document.createElement('span');
+        let p = document.createElement('p');
         btnDesc.classList.add('btn-desc');
-        btnDesc.innerText = 'read more';
+        p.innerText = 'read more';
         let text = `
         <img class="img-desc" src="/static/img/${x.id}.png" alt="${x.id}">
         <br><br>
@@ -266,6 +267,7 @@ const setUpDescription = () => {
             console.log('clicked desc');
             materialAlert('', text, () => console.log('Display description'));
        })
+        btnDesc.appendChild(p);
         x.appendChild(btnDesc);
     })
 }
@@ -276,11 +278,11 @@ const setUpValidation = () => {
     document.querySelector('#ok').addEventListener('click', function (el) {
         let slider = document.querySelector('#slider');
         let selected = document.querySelector('.selected');
-        materialConfirm('Confirmation', `You chose to give <b>${slider.value}</b> euros to
+        materialConfirm('Confirmation', `You chose to give <b>${slider.value}</b> pound(s) to
             <b>${selected.getAttribute('id')}</b>.<br><br>
             Please note that if the other player selected another answer
             than you (i.e. you did not coordinate with each other) the money will be lost.`,
-            () => { console.log('confirmed') })
+            () => { console.log('confirmed'); document.querySelector('form').dispatchEvent(new Event('submit', { bubbles: true }))});
         document.querySelector('#modal').style.display = 'block';
     });
 }

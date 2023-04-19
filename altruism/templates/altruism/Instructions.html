@@ -35,19 +35,17 @@
 {% endblock %}
 
 {% block content %}
-
+    <div class="inst-container fade-in">
+   
     <h2 id="title" class="container fade-in"></h2>
     <div id="text" class="container fade-in">
     </div>
 
-    <div class="row fade-in">
-        <div class="col" align="center" id="col-previous" style="display: none">
-            <button type="button" class="drawn-button" id="previous">PREVIOUS</button>
-        </div>
-        <div class="col" align="center" id="col-next">
-            <button type="button" class="drawn-button" id="next">NEXT</button>
-        </div>
+    <div class="btn-container">
+            <button type="button" class="matter-button-contained inst-btn" id="previous">PREVIOUS</button>
+            <button type="button" class="matter-button-contained inst-btn" id="next">NEXT</button>
     </div>
+</div>
 
     <script>
         $(document).ready(function () {
@@ -67,7 +65,7 @@
                 $('#text').hide().html(panels[index]).fadeIn(300);
                 $('#title').hide().html(titles[index]).fadeIn(300);
                 if (index > 1) {
-                    $('#col-previous').show();
+                    $('#previous').show();
                 }
 
                 if (index > max) {
@@ -81,10 +79,10 @@
                 $('#text').hide().html(panels[index]).fadeIn(300)
                 $('#title').hide().html(titles[index]).fadeIn(300)
                 if (index === 1) {
-                    $('#col-previous').hide();
+                    $('#previous').hide();
                 }
                 if (index <= max) {
-                    $('#col-next').show();
+                    $('#next').show();
                 }
             })
 

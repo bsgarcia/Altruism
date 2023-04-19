@@ -1,7 +1,7 @@
 from altruism._builtin import Page
-
+#from altruism.instructions import get_panels, titles
 from .models import Constants
-# import numpy as np
+#import numpy as np
 import time
 from settings import pounds_per_point
 
@@ -211,9 +211,14 @@ class Main(Page):
     def vars_for_template(self):
         charity_names = self.session.config.get('charities')
         endowment = self.session.config.get('endowment')
-        charities = [(charity, f'img/{charity}.png') for charity in charity_names]
-        # add a none option
-        charities = charities + [('none', 'img/none_of_them.png')] 
+
+        ch = {
+            1: [(charity, f'img/{charity}.png') for charity in ('unicef', 'savethechildren')],
+            2: [(charity, f'img/{charity}.png') for charity in ('wwf', 'thenatureconservancy')],
+            3: [(charity, f'img/{charity}.png') for charity in ('unicef', 'savethechildren', 'wwf', 'thenatureconservancy')],
+        }
+                            # add a none option
+        charities = ch[self.round_number] + [('none', 'img/none_of_them.png')] 
         return {
             'charities': charities,
             'endowment': endowment,
@@ -221,7 +226,7 @@ class Main(Page):
 
         
 # page_sequence = [Instructions, Disclose, Contribute, Results, End]
-page_sequence = [Main]
+page_sequence = [Instructions, Main]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions #                                                                                                    # 

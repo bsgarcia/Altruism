@@ -19,6 +19,7 @@
     border-radius: .5em;
     margin: 5%;
     text-align: center;
+    background-color: white;
 }
 
 .inst-video::before {

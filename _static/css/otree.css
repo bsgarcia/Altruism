@@ -25,6 +25,7 @@
     justify-content: space-between;
     flex-direction: column;
     border:white 20px solid !important;
+    background-color: white;
     /* max-height: 100%; */
     
 }

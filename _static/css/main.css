@@ -1,3 +1,7 @@
+body {
+    background-color: #dddddd1f;
+
+}
 b {
     color: #B18FC2;
 }
@@ -442,11 +446,11 @@ button::-moz-focus-inner {
 
 .md-stepper-horizontal {
     display: table;
-    width: 100%;
+    width: 75%;
     margin: 0 auto;
     background-color: #FFFFFF;
     background-size: 70px;
-
+    border-radius: .5em;
     /* box-shadow: 0 3px 8px -6px rgba(0, 0, 0, .50);*/
 }
 

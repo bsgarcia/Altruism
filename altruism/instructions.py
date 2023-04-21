@@ -100,7 +100,7 @@ round.
          If you wish, you can indicate your email address at the end of the experiment, so that we can send
 you the receipt of the donation that was made in the scope of the experiment to your chosen
 charity.<br><br>
-After having made the three decisions, you will be redirected to a questionnaire that you need to fill
+After the three rounds, you will be redirected to a questionnaire that you need to fill
 in in order to receive your payment from Prolific.<br><br>
 Ready? Let’s start!
 

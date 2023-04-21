@@ -33,3 +33,59 @@
     border: 10px solid white;
     color: #B18FC2;
 }
+
+/* info and warning panels */
+.magenta {
+    --color: #B18FC2;
+    --light-color: #b18fc218;
+
+}
+
+
+.orange {
+    --color: orange;
+    --light-color: rgba(255, 219, 152, 0.3);
+}
+
+.quiz-question-text-container {
+    margin-top: 5%;
+    margin-bottom: 30px;
+    background-color: var(--light-color);
+    padding: 10px 10px 10px 10px;
+    border-radius: .5rem;
+}
+
+.quiz-question-info-container{
+    border-left-color: var(--color); 
+    border-left-width: 5px;
+    border-radius: 0;
+    border-left-style: solid;
+}
+
+.quiz-question-info-container b {
+    color: var(--color); 
+}
+
+.quiz-question-story-container b{
+    color: rgb(116, 116, 228); 
+}
+
+.quiz-question-text-item {
+    max-width: 100%;
+    font-size: 20px;
+    line-height: 32px;
+    /* color: rgba(48, 48, 48, 0.671); */
+    color: var(--color);
+    font-weight: normal;
+    margin: 0px;
+}
+
+.quiz-question-text-item-icon {
+    color: var(--color);
+}
+
+.quiz-answer-text-item {
+    font-size: 25px;
+    color: var(--color) !important;
+    text-align: center;
+}

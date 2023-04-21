@@ -563,6 +563,10 @@ button::-moz-focus-inner {
     background-color: #333940;
 }
 
+.md-stepper-horizontal.magenta .md-step.active .md-step-circle {
+    background-color: #B18FC2;
+}
+
 
 .md-stepper-horizontal .md-step.active .md-step-circle {
     background-color: rgb(33, 150, 243);

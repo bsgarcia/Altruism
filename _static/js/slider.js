@@ -54,7 +54,7 @@ class SliderManager {
             <input id="slider" name="range" type="range" value="${initValue}" min="${min}" max="${max}" step="${step}">
             <div class="range-output">
             <output id="output" class="output" name="output" for="range">
-            ${initValue}${currency}
+            ${currency}${initValue}
              </output>
              </div>
              </div>
@@ -99,7 +99,7 @@ class SliderManager {
 
         form.oninput = function () {
             output.value = slider.value;
-            output.innerText = slider.value + currency;
+            output.innerText = currency + slider.value;
             onChange()
         };
 

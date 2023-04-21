@@ -13,3 +13,23 @@
 .inst-btn {
     margin: 1% !important;
 }
+
+.inst-video {
+    border: 3px #B18FC2 solid;
+    border-radius: .5em;
+    margin: 5%;
+    text-align: center;
+}
+
+.inst-video::before {
+    content: "video tutorial";
+    /*display: block;*/
+    /*padding-top: 56.25%;*/
+    position:relative;
+    z-index: 10;
+    top: -20px;
+    /*left: 20px;*/
+    background-color: white;
+    border: 10px solid white;
+    color: #B18FC2;
+}

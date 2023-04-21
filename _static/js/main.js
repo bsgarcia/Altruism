@@ -50,6 +50,12 @@ function toggleSlider(enableOnly = false) {
 const setUpChatButton = () => {
     let btn = document.querySelector('.otree-chat__btn-send');
     btn.className = 'matter-button-contained btn-validate';
+    btn.addEventListener('click', () => {
+        if (document.querySelector('#input').value.includes('validate')){
+            document.querySelector('#ok').classList.remove('disabled-chat')
+            document.querySelector('#ok').disabled = false;
+        }
+    })
 }
 
 const setUpChatInput = () => {
@@ -81,7 +87,7 @@ const setUpSuggestions = () => {
     const suggestionCharity = document.createElement("div");
     suggestionCharity.id = "suggestion-charity";
     suggestionCharity.classList.add("suggestion");
-    suggestionCharity.textContent = "I want to give to WWF";
+    suggestionCharity.textContent = "I want to give to ?";
 
     const suggestionAmount = document.createElement("div");
     suggestionAmount.id = "suggestion-amount";
@@ -102,19 +108,7 @@ const setUpSuggestions = () => {
     suggestionValidate.id = "suggestion-validate";
     suggestionValidate.classList.add("suggestion");
     suggestionValidate.textContent = "I will validate";
-
-    // Create the textarea element
-    const messageInput = document.createElement("textarea");
-    messageInput.classList.add("message-input");
-    messageInput.placeholder = "select message...";
-    messageInput.disabled = true;
-
-    // Create the submit button element
-    const sendButton = document.createElement("button");
-    sendButton.id = "send";
-    sendButton.type = "submit";
-    sendButton.classList.add("message-submit", "matter-button-contained");
-    sendButton.textContent = "Send";
+  
 
     // Append the child elements to the parent element
     messageBox.appendChild(suggestionCharity);
@@ -136,7 +130,9 @@ const updateSuggestions = () => {
 
             if (x.classList.contains('selected'))
                 return
-
+            if (document.querySelector('.otree-chat').classList.contains('disabled-chat'))
+                document.querySelector('.otree-chat').classList.add('fade-in')
+                document.querySelector('.otree-chat').classList.remove('disabled-chat')
             console.log('clicked ' + x.id);
             document.querySelectorAll('.card').forEach(i => i.classList.remove('selected'));
             x.classList.add('selected');
@@ -213,6 +209,13 @@ const styleChatMessages = () => {
     }, 1000)
 }
 
+const disableChat = () => {
+    document.querySelector('.otree-chat').classList.add('disabled-chat');
+}
+
+const enableChat = () => {
+    document.querySelector('.otree-chat').classList.remove('disabled-chat');
+}
 
 const setUpSlider = () => {
     let min = 0;
@@ -285,10 +288,15 @@ const setUpValidation = () => {
             () => { console.log('confirmed'); document.querySelector('form').dispatchEvent(new Event('submit', { bubbles: true }))});
         document.querySelector('#modal').style.display = 'block';
     });
+
+    // disable the button by default
+    document.querySelector('#ok').disabled = true
+    document.querySelector('#ok').classList.add('disabled-chat')
 }
 
 
 const setUpChat = () => {
+    disableChat()
     setUpChatButton();
     styleChatMessages();
     setUpChatInput()

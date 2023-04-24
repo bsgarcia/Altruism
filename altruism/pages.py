@@ -1,4 +1,4 @@
-from altruism._builtin import Page
+from altruism._builtin import Page, WaitPage
 #from altruism.instructions import get_panels, titles
 from .models import Constants
 #import numpy as np
@@ -34,6 +34,9 @@ class End(Page):
     def is_displayed(self):
         return self.round_number == Constants.num_rounds
 
+class Wait(WaitPage):
+    def after_all_players_arrive(self):
+        pass
 
 class Instructions(Page):
 
@@ -51,10 +54,10 @@ class Instructions(Page):
     @staticmethod
     def live_method(player, data):
         _set_as_connected(player)
-        # time_since_opening = (time.time() - player.time_instructions) * SECOND
-        # limit = player.session.config.get('instructions_time') * SECOND
-        # if time_since_opening > limit:
-            # return {player.id_in_group: True}
+        time_since_opening = (time.time() - player.time_instructions) * SECOND
+        limit = player.session.config.get('instructions_time') * SECOND
+        if time_since_opening > limit:
+            return {player.id_in_group: True}
         return False
 
 
@@ -226,7 +229,7 @@ class Main(Page):
 
         
 # page_sequence = [Instructions, Disclose, Contribute, Results, End]
-page_sequence = [Instructions, Main]
+page_sequence = [Wait, Instructions, Main]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions #                                                                                                    # 

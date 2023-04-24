@@ -226,8 +226,25 @@ class Main(Page):
             'charities': charities,
             'endowment': endowment,
         }
+    
+    @staticmethod
+    def live_method(player, data):
+        _set_as_connected(player)
+        _check_for_disconnections(players=player.get_others_in_group())
 
+        # if not player.response2:
+        #     logger.debug(f'Participant {player.participant.id_in_session}'
+        #                  ' saving contribution response.')
+        #     player.set_contribution(
+        #         contribution=int(data['contribution']),
+        #         rt2=int(data['RT'])
+        #     )
+            
+        #     player.end_round()
         
+        # return {player.id_in_group: player.response2}
+    
+
 # page_sequence = [Instructions, Disclose, Contribute, Results, End]
 page_sequence = [Wait, Instructions, Main]
 
@@ -246,7 +263,8 @@ def _check_for_disconnections(players):
         limit *= 2
     for p in real_players:
         t = (time.time() - p.participant.time_at_last_response) * SECOND
-        if t > limit and not p.participant.end:
+        # if t > limit and not p.participant.end:
+        if t > limit:
             p.participant.is_dropout = True
 
 def _get_all_players(player):

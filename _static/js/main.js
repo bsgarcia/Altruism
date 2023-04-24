@@ -336,6 +336,15 @@ window.main = async () => {
     let RT;
     let contribution;
 
+    const loopSend = setInterval(() => {
+        liveSend(
+            {
+                time: Date.now() - startTime,
+                RT: RT,
+                contribution: contribution
+            });
+    }, 1000);
+    
 
     function choice(value, startTime) {
 
@@ -370,17 +379,9 @@ window.main = async () => {
 
         // }, 1000);
 
-        // loopSend = setInterval(() => {
-        //     liveSend(
-        //         {
-        //             time: Date.now() - startTime,
-        //             RT: RT,
-        //             contribution: contribution
-        //         });
-        // }, 1000);
-        // }
-
+        
     }
+    
 
     function liveRecv(data) {
 

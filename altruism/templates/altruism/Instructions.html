@@ -68,8 +68,9 @@
                 }
 
                 if (index > max) {
-                    $('#main').fadeOut(140);
-                    $('#form').submit();
+                    materialAlert('Wait', 'Please wait for the end of the countdown to proceed to the experiment', () => {
+                    });
+                    index--;
                 }
             });
 
@@ -90,11 +91,18 @@
 
            setInterval(function () {
                liveSend('hey');
+               if (index == max) {
+                //alert('test')
+                document.querySelector('#text').innerHTML =
+                   document.querySelector('#text')
+                   .innerHTML.replace(/\d+/g, Math.round((timeLimit-(Date.now() - startTime))/1000))
+                
+               }
                if ((Date.now() - startTime) > timeLimit) {
                    $('#main').fadeOut(140);
                    $('#form').submit();
                }
-           }, 2000);
+           }, 1000);
 
         });
 

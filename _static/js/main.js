@@ -127,12 +127,13 @@ const setUpSuggestions = () => {
 const updateSuggestions = () => {
     document.querySelectorAll('.card').forEach(x => {
         x.addEventListener('click', (event, el) => {
-
+            event.preventDefault();
             if (x.classList.contains('selected'))
                 return
-            if (document.querySelector('.otree-chat').classList.contains('disabled-chat'))
+            if (document.querySelector('.otree-chat').classList.contains('disabled-chat')) {
                 document.querySelector('.otree-chat').classList.add('fade-in')
                 document.querySelector('.otree-chat').classList.remove('disabled-chat')
+            }
             console.log('clicked ' + x.id);
             document.querySelectorAll('.card').forEach(i => i.classList.remove('selected'));
             x.classList.add('selected');

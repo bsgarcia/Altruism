@@ -22,6 +22,7 @@
     background-color: white;
 }
 
+
 .inst-video::before {
     content: "video tutorial";
     /*display: block;*/
@@ -30,9 +31,11 @@
     z-index: 10;
     top: -20px;
     /*left: 20px;*/
-    background-color: white;
-    border: 10px solid white;
+    background-color: #FAFAFA;
+    /*! border: 10px solid white; */
     color: #B18FC2;
+    border-left: 10px #FAFAFA solid;
+    border-right: 10px #FAFAFA solid;
 }
 
 /* info and warning panels */

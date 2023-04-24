@@ -30,7 +30,7 @@
 {% endblock %}
 
 {% block content %}
-    <div class="inst-container fade-in">
+    <div id='inst' class="inst-container fade-in">
    
     <h2 id="title" class="container fade-in"></h2>
     <div id="text" class="container fade-in">
@@ -56,6 +56,10 @@
             $('#title').html(titles[index]);
 
             $('#next').click(function () {
+                // scroll top to inst div
+                $('html, body').animate({
+                    scrollTop: $("#inst").offset().top
+                }, 200);
                 index++;
                 $('#text').hide().html(panels[index]).fadeIn(300);
                 $('#title').hide().html(titles[index]).fadeIn(300);
@@ -70,6 +74,9 @@
             });
 
             $('#previous').click(function () {
+                $('html, body').animate({
+                    scrollTop: $("#inst").offset().top
+                }, 200);
                 index--;
                 $('#text').hide().html(panels[index]).fadeIn(300)
                 $('#title').hide().html(titles[index]).fadeIn(300)

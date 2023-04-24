@@ -29,6 +29,13 @@
 {% endblock %}
 
 {% block content %}
+<!-- <div id="page-loading" class="screen hide">
+    <div class="loader">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div> -->
 <div class="container fade-in" id="main">
     <div class="row">
         <div class="col1">
@@ -72,7 +79,6 @@
 <script>
     // for slider
     window.max = {{ endowment }};
-    {% comment %} document.querySelector('#send').addEventListener('click', () => insertMessage()) {% endcomment %}
     // wait for the DOM and additional scripts to be loaded
     if (document.readyState !== 'loading') {
         //console.log('document is already ready, just execute code here');

@@ -305,17 +305,32 @@ const setUpChat = () => {
     updateSuggestions()
 }
 
-const setUp = () => {
+const setUp = async () => {
+    //await toggleLoading()
     setUpChat()
     setUpSlider()
     setUpValidation()
     setUpDescription()
+    //await toggleLoading()
 }
 
+// const toggleLoading = async () => {
+//     let el = document.getElementById('page-loading');
+//     if (!el.classList.contains('hide')) {
+//         document.querySelector('.otree-body').classList.remove('hide')
+//         el.classList.add('hide')
+//     } else {
+//         el.classList.remove('hide')
+//         document.querySelector('.otree-body').classList.add('hide')
+//     }   
+//     delay(1000)
+// }
 
-window.main = () => {
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+window.main = async () => {
     // changeTitle('Altruism Game')
-    setUp()
+    await setUp()
 
     let startTime = Date.now();
     let RT;

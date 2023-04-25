@@ -83,7 +83,11 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-
+        window.setInterval(
+            () => {
+                liveSend('hey')
+            }
+        , 1000);
         var socket;
 
         initWebSocket();

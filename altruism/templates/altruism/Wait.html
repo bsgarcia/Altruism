@@ -1,84 +1,86 @@
 {% extends "global/WaitPage.html" %}
 
 {% block content %}
-    <span>Please do not close this page, instructions will soon follow.<br>
-        Waiting for the other players to join<span id="wait">...</span></span>
+<span>Please do not close this page, instructions will soon follow.<br>
+    Waiting for the other players to join<span id="wait">...</span></span>
 
-    </div>
+</div>
 
-    <style>
-        @font-face {
-            font-family: "FuturaHandwritten";
-            src: url(' /static/font/FuturaHandwritten.ttf');
+<style>
+    @font-face {
+        font-family: "FuturaHandwritten";
+        src: url(' /static/font/FuturaHandwritten.ttf');
+    }
+
+    body {
+        font-family: "FuturaHandwritten";
+        font-size: 15px;
+
+        background-color: white;
+    }
+
+    .card {
+        background: white;
+        border: 5px solid black;
+
+            {
+            #border-radius: 5px;
+            #
         }
 
-        body {
-            font-family: "FuturaHandwritten";
-            font-size: 15px;
-
-            background-color: white;
-        }
-        .card {
-            background: white;
-            border: 5px solid black;
-            {#border-radius: 5px;#}
-            {#box-shadow: 0 0 5px #999;#}
-            /*width: 940px; */
-            margin: 22px auto;
-            margin-top: 30%;
-
-            animation: fadeIn 3s;
-            -webkit-animation: fadeIn 2s;
-            -moz-animation: fadeIn 2s;
-            -o-animation: fadeIn 2s;
-            -ms-animation: fadeIn 2s;
-
+            {
+            #box-shadow: 0 0 5px #999;
+            #
         }
 
-        .card-body {
-            margin-top: 5px;
-            font-size: 18px;
+        /*width: 940px; */
+        margin: 22px auto;
+        margin-top: 30%;
+
+        animation: fadeIn 3s;
+        -webkit-animation: fadeIn 2s;
+        -moz-animation: fadeIn 2s;
+        -o-animation: fadeIn 2s;
+        -ms-animation: fadeIn 2s;
+
+    }
+
+    .card-body {
+        margin-top: 5px;
+        font-size: 18px;
+    }
+
+    .card-header {
+        border-bottom: 0px !important;
+    }
+
+    .page-header {
+            {
+            #border: 1px solid #c0c0c0;
+            #
         }
+    }
 
-        .card-header {
-            border-bottom: 0px !important;
-        }
+    .otree-wait-page {
+        max-width: 970px
+    }
+</style>
 
-        .page-header {
-           {#border: 1px solid #c0c0c0;#}
-        }
+<script>
+    $('head').append('<link rel="stylesheet" type="text/css" href="{% static 'css / main.css' %}">');
 
-        .otree-wait-page {
-            max-width:970px
-        }
+    var dots = window.setInterval(function () {
 
-    </style>
+        $('.progress').remove();
 
-    <script>
-        $('head').append('<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">');
-
-        var dots = window.setInterval( function() {
-
-            $('.progress').remove();
-
+        liveSend('hey')
         var wait = document.getElementById("wait");
-        if ( wait.innerHTML.length >= 3 )
+        if (wait.innerHTML.length >= 3)
             wait.innerHTML = "";
         else
             wait.innerHTML += ".";
 
-        }, 500);
-    </script>
+    }, 500);
+</script>
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-

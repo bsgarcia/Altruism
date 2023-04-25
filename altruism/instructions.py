@@ -1,5 +1,5 @@
 from settings import pounds_per_point
-from altruism.models import Constants
+from altruism.models import C
 import numpy as np
 
 

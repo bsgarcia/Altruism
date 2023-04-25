@@ -49,13 +49,14 @@
             let max = Math.max(...Object.keys(panels));
             let index = 1;
 
-            let startTime = Date.now();
+            let startTime = {{ startTime }};
             let timeLimit = {{ instructionsTime }};
 
             $('#text').html(panels[index]);
             $('#title').html(titles[index]);
 
             $('#next').click(function () {
+
                 // scroll top to inst div
                 $('html, body').animate({
                     scrollTop: $("#inst").offset().top
@@ -63,6 +64,11 @@
                 index++;
                 $('#text').hide().html(panels[index]).fadeIn(300);
                 $('#title').hide().html(titles[index]).fadeIn(300);
+                if (index === max) {
+                    document.querySelector('#text').innerHTML =
+                   document.querySelector('#text')
+                   .innerHTML.replace(/\d+/g, Math.round((timeLimit-(Date.now() - startTime))/1000))
+                }
                 if (index > 1) {
                     $('#previous').show();
                 }
@@ -99,8 +105,8 @@
                 
                }
                if ((Date.now() - startTime) > timeLimit) {
-                   $('#main').fadeOut(140);
-                   $('#form').submit();
+                //    $('#main').fadeOut(140);
+                //    $('#form').submit();
                }
            }, 1000);
 

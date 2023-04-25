@@ -1,5 +1,9 @@
 import { cardDesc } from './card-desc.js';
 
+// global variables 
+var startTime = Date.now();
+
+
 function setActiveCurrentStep(id) {
     $('#instructions').removeClass('active');
     $('#training').removeClass('active');
@@ -51,7 +55,7 @@ const setUpChatButton = () => {
     let btn = document.querySelector('.otree-chat__btn-send');
     btn.className = 'matter-button-contained btn-validate';
     btn.addEventListener('click', () => {
-        if (document.querySelector('#input').value.includes('validate')){
+        if (document.querySelector('#input').value.includes('validate')) {
             document.querySelector('#ok').classList.remove('disabled-chat')
             document.querySelector('#ok').disabled = false;
         }
@@ -108,7 +112,7 @@ const setUpSuggestions = () => {
     suggestionValidate.id = "suggestion-validate";
     suggestionValidate.classList.add("suggestion");
     suggestionValidate.textContent = "I will validate";
-  
+
 
     // Append the child elements to the parent element
     messageBox.appendChild(suggestionCharity);
@@ -228,7 +232,7 @@ const setUpSlider = () => {
     // generate html
     let sliderHTML = SliderManager.generateSlider({
         text: '',
-        min: min, max: max, step: step, initValue: initValue, currency:'£'
+        min: min, max: max, step: step, initValue: initValue, currency: '£'
     });
     let elSlider = document.createElement('div');
     elSlider.innerHTML = sliderHTML;
@@ -256,7 +260,7 @@ const setUpSlider = () => {
 
 const setUpDescription = () => {
     document.querySelectorAll('.card').forEach(x => {
-        if (x.id=='none') return
+        if (x.id == 'none') return
 
         let btnDesc = document.createElement('span');
         let p = document.createElement('p');
@@ -270,7 +274,7 @@ const setUpDescription = () => {
         btnDesc.addEventListener('click', () => {
             console.log('clicked desc');
             materialAlert('', text, () => console.log('Display description'));
-       })
+        })
         btnDesc.appendChild(p);
         x.appendChild(btnDesc);
     })
@@ -286,7 +290,8 @@ const setUpValidation = () => {
             <b>${selected.getAttribute('id')}</b>.<br><br>
             Please note that if the other player selected another answer
             than you (i.e. you did not coordinate with each other) the money will be lost.`,
-            () => { console.log('confirmed'); document.querySelector('form').dispatchEvent(new Event('submit', { bubbles: true }))});
+            // if ok is clicked, submit the form
+            submit);
         document.querySelector('#modal').style.display = 'block';
     });
 
@@ -314,6 +319,24 @@ const setUp = async () => {
     //await toggleLoading()
 }
 
+const submit = () => {
+    let choice = document.querySelector('.card.selected').id
+    let contribution = SliderManager.getValue()
+    let rt = Date.now() - startTime
+
+    liveSend({
+        choice: choice,
+        contribution: contribution,
+        rt: rt
+    })
+
+    document.querySelector('form').dispatchEvent(new Event('submit'));
+}
+const ping = () => {
+    setInterval(() => {
+        liveSend('ping')
+    }, 2000)
+}
 // const toggleLoading = async () => {
 //     let el = document.getElementById('page-loading');
 //     if (!el.classList.contains('hide')) {
@@ -326,62 +349,12 @@ const setUp = async () => {
 //     delay(1000)
 // }
 
-const delay = ms => new Promise(res => setTimeout(res, ms));
 
 window.main = async () => {
     // changeTitle('Altruism Game')
     await setUp()
+    ping()
 
-    let startTime = Date.now();
-    let RT;
-    let contribution;
-
-    const loopSend = setInterval(() => {
-        liveSend(
-            {
-                time: Date.now() - startTime,
-                RT: RT,
-                contribution: contribution
-            });
-    }, 1000);
-    
-
-    function choice(value, startTime) {
-
-        RT = Date.now() - startTime;
-        var startTime = Date.now();
-        contribution = value;
-
-        //liveSend(
-        // RT: RT, 
-        //contribution: contribution
-        //}
-        //contribution: contribution
-        //}
-        // );
-
-        // setTimeout(() => {
-        // $('#main').append(templateWait);
-        // $("#modalWait").modal({
-        // backdrop: 'static',
-        // keyboard: false
-        // });
-        // $('#modalWait').modal('show');
-        // }, 1000);
-
-        // setInterval(() => {
-        //     var wait = document.getElementById("wait");
-
-        //     if (wait.innerHTML.length >= 3)
-        //         wait.innerHTML = "";
-        //     else
-        //         wait.innerHTML += ".";
-
-        // }, 1000);
-
-        
-    }
-    
 
     function liveRecv(data) {
 
@@ -393,3 +366,4 @@ window.main = async () => {
     }
 }
 
+const delay = ms => new Promise(res => setTimeout(res, ms));

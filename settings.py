@@ -7,7 +7,7 @@ SESSION_CONFIGS = [
         name='altruism',
         display_name="alt_single_player",
         num_demo_participants=2,
-        instructions_time=300,#60*9,
+        instructions_time=20,#60*9,
         dropout_time=10,
         results_time=7.5,
         app_sequence=['altruism'],
@@ -34,7 +34,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 
 PARTICIPANT_FIELDS = ['opp_id', 'multiplier', 'disclose', 'contribution', 'opp_bad_contribution',
                       'prolific_id', 'idx', 'is_dropout', 'time_at_last_response', 'total',
-                      'disclosure_group', 'end', 'opp_multiplier', 'opp_disclose', 'opp_p_disclose']
+                      'disclosure_group', 'end', 'opp_multiplier', 'opp_disclose', 'opp_p_disclose', 'time_instructions']
 
 # ISO-639 code
 # for example: de, fr, ja, ko, zh-hans

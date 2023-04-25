@@ -1,6 +1,6 @@
 from altruism._builtin import Page, WaitPage
 #from altruism.instructions import get_panels, titles
-from .models import Constants
+from .models import C
 #import numpy as np
 import time
 from settings import pounds_per_point
@@ -32,11 +32,19 @@ class End(Page):
         return {'total': total, 'pences': pences, 'pounds': pounds}
 
     def is_displayed(self):
-        return self.round_number == Constants.num_rounds
+        return self.round_number == C.NUM_ROUNDS
 
 class Wait(WaitPage):
     def after_all_players_arrive(self):
-        pass
+        logger.debug('WaitPage: set status as connected')
+        for p in self.group.get_players():
+            logger.debug(
+                'WaitPage: {p.participant.code}-{p.participant.label} is connected'.format(p=p))
+            _set_as_connected(p)
+            if p.participant.is_dropout:
+                # if p.participant.is_dropout, set it to False as it is a new round
+                logger.debug('WaitPage: {p.participant.code}-{p.participant.label} is not dropout anymore'.format(p=p))
+                p.participant.is_dropout = False
 
 class Instructions(Page):
 
@@ -45,164 +53,22 @@ class Instructions(Page):
 
     def vars_for_template(self):
         from .instructions import get_panels, titles
-        if self.player.time_instructions == -1:
-            self.player.time_instructions = time.time()
+        if self.player.participant.time_instructions is None:
+            self.player.participant.time_instructions = int(time.time() * SECOND)
         limit = self.session.config.get('instructions_time') * SECOND
         # single_player = int(self.session.config.get('single_player')) 
-        return {'panels': get_panels(), 'titles': titles, 'instructionsTime': limit}#, 'single_player': single_player}
+        return {'panels': get_panels(), 'titles': titles, 'instructionsTime': limit,
+         'startTime': self.player.participant.time_instructions}#, 'single_player': single_player}
 
     @staticmethod
     def live_method(player, data):
         _set_as_connected(player)
-        time_since_opening = (time.time() - player.time_instructions) * SECOND
+        time_since_opening = time.time() * SECOND -  player.participant.time_instructions
         limit = player.session.config.get('instructions_time') * SECOND
         if time_since_opening > limit:
             return {player.id_in_group: True}
         return False
 
-
-class Disclose(Page):
-    def get_template_name(self):
-        if self.participant.is_dropout:
-            return 'altruism/Dropout.html'
-        # if not dropout then execute the original method
-        
-        # backup every twenty round (avoid overload)
-        if self.round_number % 20 == 0:
-            self.player.backup(with_sqlite=True)
-
-        return super().get_template_name()
-
-    def vars_for_template(self):
-        from .html import wait, real
-        _set_as_connected(self.player)
-        training_round_number = self.session.config.get('training_round_number')
-        return {
-            'player_character': 'img/{}.gif'.format(self.player.participant.multiplier),
-            'html': wait,
-            'modalReal': real,
-            # if decimals, show, if not, then round to closest integer
-            'total': self.player.participant.total if self.player.participant.total % 1 else int(self.player.participant.total),
-            'player_color': '#5893f6' if self.player.participant.multiplier == Constants.multiplier_good else '#d4c84d',
-            'training': int(self.player.round_number <= training_round_number),
-            'real': int(self.player.round_number == (training_round_number+1)),
-        }
-
-    @staticmethod
-    def live_method(player, data):
-        _set_as_connected(player)
-        _check_for_disconnections(players=player.get_others_in_subsession())
-
-        if not player.response1:
-            logger.debug(f'Participant {player.participant.id_in_session}'
-                         ' saving disclosure response.')
-            player.set_disclose(
-                disclose=bool(data['disclose']),
-                rt1=int(data['RT'])
-            )
-
-        return {player.id_in_group: player.response1}
-
-
-
-class Contribute(Page):
-    def get_template_name(self):
-        if self.participant.is_dropout:
-            return 'altruism/Dropout.html'
-        # if not dropout then execute the original method
-        return super().get_template_name()
-
-
-    def vars_for_template(self):
-        from .html import wait
-
-        _set_as_connected(self.player)
-
-        opp_character, opp_multiplier = [self.player.see_opponent_type(), ] * 2
-        player_character, player_multiplier = [self.player.participant.multiplier, ] * 2
-
-        if opp_multiplier is None:
-            opp_multiplier = '...'
-
-        if not self.player.disclose:
-            player_multiplier = '...'
-            player_character = None
-
-        endowment = Constants.endowment - (Constants.disclosure_cost*self.player.disclose)
-
-        training_round_number = self.session.config.get('training_round_number')
-        return {
-            'player_character': 'img/{}.gif'.format(player_character),
-            'opponent_character': 'img/{}.gif'.format(opp_character),
-            'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
-            'opponent_multiplier': opp_multiplier,
-            'player_multiplier': player_multiplier,
-            'endowment': endowment,
-            'html': wait,
-            'training': int(self.player.round_number <= training_round_number)
-        }
-
-    @staticmethod
-    def live_method(player, data):
-        _set_as_connected(player)
-        _check_for_disconnections(players=player.get_others_in_subsession())
-
-        if not player.response2:
-            logger.debug(f'Participant {player.participant.id_in_session}'
-                         ' saving contribution response.')
-            player.set_contribution(
-                contribution=int(data['contribution']),
-                rt2=int(data['RT'])
-            )
-            
-            player.end_round()
-        
-        return {player.id_in_group: player.response2}
-
-
-
-class Results(Page):
-    def get_template_name(self):
-        if self.participant.is_dropout:
-            return 'altruism/Dropout.html'
-        # if not dropout then execute the original method
-        return super().get_template_name()
-
-
-    def vars_for_template(self):
-        player_multiplier = self.player.participant.multiplier
-
-        opp_multiplier = self.player.opp_multiplier
-        opp_disclose = self.player.opp_disclose
-        opp_contribution = self.player.opp_contribution
-        opp_payoff = self.player.opp_payoff
-        individual_share = int(self.player.individual_share)
-        payoff = int(self.player.payoff)
-        
-        training_round_number = self.session.config.get('training_round_number')
-
-        if self.round_number == Constants.num_rounds:
-            self.player.participant.end = True
-            # self.sorting()
-
-        return {
-            'player_character': 'img/{}.gif'.format(player_multiplier),
-            'opp_character': 'img/{}.gif'.format(opp_multiplier),
-            'player_multiplier': player_multiplier,
-            'opp_multiplier': opp_multiplier,
-            'opp_contribution': opp_contribution,
-            'opp_left': Constants.endowment - opp_contribution - (Constants.disclosure_cost*opp_disclose),
-            'player_left': Constants.endowment - self.player.contribution - (Constants.disclosure_cost*self.player.disclose),
-            'opp_payoff': opp_payoff,
-            'player_color': '#5893f6' if player_multiplier == Constants.multiplier_good else '#d4c84d',
-            'opp_color': '#5893f6' if opp_multiplier == Constants.multiplier_good else '#d4c84d',
-            'disclose': opp_disclose,
-            'individual_share': individual_share,
-            'payoff': payoff,
-            'resultsTime': self.session.config.get('results_time') * SECOND,
-            'training': int(self.player.round_number <= training_round_number)
-
-        }
 
 class Main(Page):
     def get_template_name(self):
@@ -220,10 +86,11 @@ class Main(Page):
             2: [(charity, f'img/{charity}.png') for charity in ('wwf', 'thenatureconservancy')],
             3: [(charity, f'img/{charity}.png') for charity in ('unicef', 'savethechildren', 'wwf', 'thenatureconservancy')],
         }
-                            # add a none option
-        charities = ch[self.round_number] + [('none', 'img/none_of_them.png')] 
+
+        self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-1]
+   
         return {
-            'charities': charities,
+            'charities': ch[self.player.condition] +  [('none', 'img/none_of_them.png')] ,
             'endowment': endowment,
         }
     
@@ -232,17 +99,21 @@ class Main(Page):
         _set_as_connected(player)
         _check_for_disconnections(players=player.get_others_in_group())
 
-        # if not player.response2:
-        #     logger.debug(f'Participant {player.participant.id_in_session}'
-        #                  ' saving contribution response.')
-        #     player.set_contribution(
-        #         contribution=int(data['contribution']),
-        #         rt2=int(data['RT'])
-        #     )
+        # if player.choice is empty string ""
+        if not player.choice and data != 'ping':
+            logger.debug(f'Participant {player.participant.label} saving response. {data}')
+            player.set_contribution(
+                contribution=int(data['contribution']),
+            )
+            player.set_rt(
+                rt=int(data['rt'])
+            )
+            player.set_choice(
+                choice=data['choice']
+            )
             
-        #     player.end_round()
-        
-        # return {player.id_in_group: player.response2}
+            #player.end_round()
+
     
 
 # page_sequence = [Instructions, Disclose, Contribute, Results, End]

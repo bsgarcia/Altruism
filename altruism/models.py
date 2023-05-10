@@ -148,6 +148,9 @@ class Player(BasePlayer):
     rt = models.IntegerField(default=-1)
     choice = models.StringField(default='')
     condition = models.IntegerField(default=-1)
+    msg_clean = models.LongStringField(default='')
+    msg_html = models.LongStringField(default='')
+    msg_json = models.LongStringField(default='')
 
     def set_condition(self, condition: int):
         self.condition = condition
@@ -160,6 +163,11 @@ class Player(BasePlayer):
 
     def set_choice(self, choice: str):
         self.choice = choice
+
+    def set_msg(self, msg_clean: str, msg_html: str, msg_json: str):
+        self.msg_clean = msg_clean
+        self.msg_html = msg_html
+        self.msg_json = msg_json
 
     def end_round(self):
         """
@@ -180,50 +188,34 @@ class Player(BasePlayer):
 def custom_export(players):
     col = [
         'session',
-        'is_bot',
         'prolific_id',
+        'group_id',
         'id_in_session',
-        'idx',
         'round_number',
-        'multiplier',
-        'disclose',
         'contribution',
-        'rt1',
-        'rt2',
-        'reward',
-        'payoff',
-        'total',
-        'individual_share',
-        'opp_multiplier',
-        'opp_disclose',
-        'opp_p_disclose',
-        'opp_contribution',
-        'opp_payoff',
-        'total_contribution'
+        'choice',
+        'rt',
+        'condition',
+        'order_idx',
+        'msg_clean',
+        'msg_json',
+        'msg_html'
     ]
     yield col
     for p in players:
         row = [
             p.session.code,
-            p.participant.is_dropout,
             p.participant.label,
+            p.group.id,
             p.participant.id_in_session,
-            p.participant.idx,
             p.round_number,
-            p.participant.multiplier,
-            p.disclose,
             p.contribution,
-            p.rt1,
-            p.rt2,
-            p.reward,
-            p.payoff,
-            p.total,
-            p.individual_share,
-            p.opp_multiplier,
-            p.opp_disclose,
-            p.opp_p_disclose,
-            p.opp_contribution,
-            p.opp_payoff,
-            p.total_contribution
+            p.choice,
+            p.rt,
+            p.condition,
+            p.group.order_idx,
+            p.msg_clean,
+            p.msg_json,
+            p.msg_html,
         ]
         yield row

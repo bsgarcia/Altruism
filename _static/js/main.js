@@ -323,15 +323,53 @@ const submit = () => {
     let choice = document.querySelector('.card.selected').id
     let contribution = SliderManager.getValue()
     let rt = Date.now() - startTime
+    let [msg_html, msg_clean, msg_json] = getMessages()
 
     liveSend({
         choice: choice,
         contribution: contribution,
-        rt: rt
+        rt: rt,
+        msg_html: msg_html,
+        msg_clean: msg_clean,
+        msg_json: msg_json
     })
 
     document.querySelector('form').dispatchEvent(new Event('submit'));
 }
+
+const getMessages = () => {
+    let html = document.querySelector('.otree-chat__messages').innerHTML
+    let msgBox = Array.from(document.querySelector('.otree-chat__messages').children)
+    let clean = ''
+    let i = 0;
+    let json = [];
+    msgBox.forEach(x => {
+        i += 1
+        if (x.classList.contains('otree-chat__msg-other')) {
+            clean += `number=${i},sender=other,msg=${x.innerText};`
+            json.push({
+                number: i,
+                sender: 'other',
+                msg: x.innerText
+            })
+
+        } else {
+            clean += `number=${i},sender=me,msg=${x.innerText};`
+
+            json.push({
+                number: i,
+                sender: 'me',
+                msg: x.innerText
+            })
+        }
+    })
+
+    let json_string = JSON.stringify(json)
+
+    return [html, clean, json_string]
+
+}
+
 const ping = () => {
     setInterval(() => {
         liveSend('ping')

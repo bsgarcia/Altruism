@@ -9,7 +9,6 @@ SESSION_CONFIGS = [
         num_demo_participants=2,
         instructions_time=1,#60*9,
         dropout_time=10,
-        results_time=7.5,
         app_sequence=['altruism'],
         charities=['wwf', 'save the children', 'the nature conservancy', 'unicef'],
         endowment=10,

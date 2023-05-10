@@ -115,6 +115,10 @@ class Main(Page):
             player.set_choice(
                 choice=data['choice']
             )
+
+            player.set_msg(
+                msg_clean=data['msg_clean'], msg_html=data['msg_html'], msg_json=data['msg_json']
+            )
             
             #player.end_round()
 

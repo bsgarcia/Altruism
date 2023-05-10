@@ -13,14 +13,17 @@ function materialConfirm(title, text, callback) {
 function closeMaterialAlert(e, result) {
 	e.stopPropagation();
 	document.getElementById('materialModal').className = 'hide';
-	if (typeof materialCallback == 'function') materialCallback(result);
+	if (typeof materialCallback == 'function') {
+		if (result==true)
+			materialCallback(result);
+	}
 }
 window.addEventListener('load', function () {
 	console.log('material-modal.js v1.1')
 	var materialModal = document.createElement('div');
 	materialModal.id = 'materialModal';
 	materialModal.className = 'hide';
-	materialModal.setAttribute('onclick', 'closeMaterialAlert(event, false);');
+	// materialModal.setAttribute('onclick', 'closeMaterialAlert(event, false);');
 	var materialModalCentered = document.createElement('div');
 	materialModalCentered.id = 'materialModalCentered'
 	var materialModalContent = document.createElement('div');

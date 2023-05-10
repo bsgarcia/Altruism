@@ -81,10 +81,15 @@ class Main(Page):
         endowment = self.session.config.get('endowment')
 
         ch = {
-            1: [(charity, f'img/{charity}.png') for charity in ('unicef', 'savethechildren')],
-            2: [(charity, f'img/{charity}.png') for charity in ('wwf', 'thenatureconservancy')],
-            3: [(charity, f'img/{charity}.png') for charity in ('unicef', 'savethechildren', 'wwf', 'thenatureconservancy')],
+            1: [[charity, f'img/{charity}.png'] for charity in ('unicef', 'savethechildren')],
+            2: [[charity, f'img/{charity}.png'] for charity in ('wwf', 'thenatureconservancy')],
+            3: [[charity, f'img/{charity}.png'] for charity in ('unicef', 'savethechildren', 'wwf', 'thenatureconservancy')],
         }
+        for k in ch:
+            for i, (name, img) in enumerate(ch[k]):
+                for name_with_space in charity_names:
+                    if name_with_space.replace(' ', '') == name:
+                        ch[k][i][0] = name_with_space
 
         self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-1]
    

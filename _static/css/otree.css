@@ -3,6 +3,11 @@
     --matter-primary-rgb: 177, 143, 194;
 }
 
+.card-header {
+    background-color: white !important;
+    border-bottom: 0 !important;
+}
+
 .otree-body {
     max-width: 1200px !important;
 }

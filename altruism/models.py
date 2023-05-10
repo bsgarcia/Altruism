@@ -147,7 +147,6 @@ class Player(BasePlayer):
     contribution = models.IntegerField(default=-1)
     rt = models.IntegerField(default=-1)
     choice = models.StringField(default='')
-    time_instructions = models.FloatField(default=-1)
     condition = models.IntegerField(default=-1)
 
     def set_condition(self, condition: int):

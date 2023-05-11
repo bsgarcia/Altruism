@@ -292,7 +292,7 @@ const setUpValidation = () => {
             than you (i.e. you did not coordinate with each other) the money will be lost.`,
             // if ok is clicked, submit the form
             submit);
-        document.querySelector('#modal').style.display = 'block';
+        // document.querySelector('#modal').style.display = 'block';
     });
 
     // disable the button by default

@@ -334,8 +334,11 @@ const submit = () => {
         msg_clean: msg_clean,
         msg_json: msg_json
     })
-
+    
+    let event = document.createEvent('Event'); 
+    event.initEvent('submit', true, true);
     document.querySelector('form').dispatchEvent(new Event('submit'));
+    document.querySelector('form').dispatchEvent(event);
 }
 
 const getMessages = () => {

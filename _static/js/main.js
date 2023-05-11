@@ -268,10 +268,10 @@ const setUpDescription = () => {
         p.innerText = 'read more';
         let id = x.id.replace(/ /g, '');
         let text = `
-        <img class="img-desc" src="/static/img/${x.id}.png" alt="${x.id}">
+        <img class="img-desc" src="/static/img/${id}.png" alt="${id}">
         <br><br>
         <h3><b>Description</b></h3>
-        <p>${cardDesc[x.id]}</p>`;
+        <p>${cardDesc[id]}</p>`;
         btnDesc.addEventListener('click', () => {
             console.log('clicked desc');
             materialAlert('', text, () => console.log('Display description'));

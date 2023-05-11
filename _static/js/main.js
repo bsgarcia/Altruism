@@ -335,10 +335,14 @@ const submit = () => {
         msg_json: msg_json
     })
     
+    // for firefox
+    document.querySelector('form').dispatchEvent(new Event('submit'));
+    
+    // for chrome/edge
     let event = document.createEvent('Event'); 
     event.initEvent('submit', true, true);
-    document.querySelector('form').dispatchEvent(new Event('submit'));
     document.querySelector('form').dispatchEvent(event);
+    document.querySelector('form').submit();
 }
 
 const getMessages = () => {

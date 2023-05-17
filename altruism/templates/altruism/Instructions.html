@@ -44,15 +44,14 @@
 
     <script>
         var notifTimer;
+        var timeLimit = {{ instructionsTime }};
+        var startTime = {{ startTime }};
         $(document).ready(function () {
             
             let panels = {{ panels }};
             let titles = {{ titles }};
             let max = Math.max(...Object.keys(panels));
             let index = 1;
-
-            let startTime = {{ startTime }};
-            let timeLimit = {{ instructionsTime }};
 
             $('#text').html(panels[index]);
             $('#title').html(titles[index]);

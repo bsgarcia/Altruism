@@ -124,45 +124,45 @@
                }
            }, 1000);
 
-        });
 
-        function liveRecv(data) {
-            if (data === true) {
-                $('#main').fadeOut(140);
-                clearInterval(timer);
-                $('#form').submit();
+            function liveRecv(data) {
+                if (data === true) {
+                    $('#main').fadeOut(140);
+                    clearInterval(timer);
+                    $('#form').submit();
+                }
             }
-        }
 
-        function notifyMe() {
-            if (!window.Notification) {
-                console.log('Browser does not support notifications.');
-            } else {
-                // check if permission is already granted
-                if (Notification.permission === 'granted') {
-                    // show notification here
-                    var notify = new Notification('Prolific Experiment', {
-                        body: 'The experiment is starting!',
-                        icon: 'https://pbs.twimg.com/profile_images/1027915667637497861/Ps9JRJOc_400x400.jpg',
-                    });
-                }// else {
-                 //   // request permission from user
-                 //   Notification.requestPermission().then(function (p) {
-                 //       if (p === 'granted') {
-                 //           // show notification here
-                 //           var notify = new Notification('Hi there!', {
-                 //               body: 'How are you doing?',
-                 //               icon: 'https://bit.ly/2DYqRrh',
-                 //           });
-                 //       } else {
-                 //           console.log('User blocked notifications.');
-                 //       }
-                 //   }).catch(function (err) {
-                 //       console.error(err);
-                 //   });
-                //}
+            function notifyMe() {
+                if (!window.Notification) {
+                    console.log('Browser does not support notifications.');
+                } else {
+                    // check if permission is already granted
+                    if (Notification.permission === 'granted') {
+                        // show notification here
+                        var notify = new Notification('Prolific Experiment', {
+                            body: 'The experiment is starting!',
+                            icon: 'https://pbs.twimg.com/profile_images/1027915667637497861/Ps9JRJOc_400x400.jpg',
+                        });
+                    }// else {
+                     //   // request permission from user
+                     //   Notification.requestPermission().then(function (p) {
+                     //       if (p === 'granted') {
+                     //           // show notification here
+                     //           var notify = new Notification('Hi there!', {
+                     //               body: 'How are you doing?',
+                     //               icon: 'https://bit.ly/2DYqRrh',
+                     //           });
+                     //       } else {
+                     //           console.log('User blocked notifications.');
+                     //       }
+                     //   }).catch(function (err) {
+                     //       console.error(err);
+                     //   });
+                    //}
+                }
             }
-        }
+        })
     </script>
 
 {% endblock %}

@@ -118,7 +118,6 @@
                }
                if ((Date.now() - startTime) > (timeLimit - 10000)) {
                     notifyMe();
-                    clearInterval(timer);
                     
                 //    $('#main').fadeOut(140);
                 //    $('#form').submit();
@@ -130,6 +129,7 @@
         function liveRecv(data) {
             if (data === true) {
                 $('#main').fadeOut(140);
+                clearInterval(timer);
                 $('#form').submit();
             }
         }

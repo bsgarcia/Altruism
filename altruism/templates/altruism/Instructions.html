@@ -107,7 +107,7 @@
                 }
             })
 
-           setInterval(function () {
+           var timer = setInterval(function () {
                liveSend('hey');
                if (index == max) {
                 //alert('test')
@@ -118,6 +118,8 @@
                }
                if ((Date.now() - startTime) > (timeLimit - 10000)) {
                     notifyMe();
+                    clearInterval(timer);
+                    
                 //    $('#main').fadeOut(140);
                 //    $('#form').submit();
                }

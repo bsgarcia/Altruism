@@ -146,7 +146,10 @@ class Group(BaseGroup):
         else:
             self.order_idx = self.in_round(1).order_idx
     def set_group_id(self):
-        self.group_id = su.uuid()[:8]
+        if self.round_number == 1:
+            self.group_id = su.uuid()[:8]
+        else:
+            self.group_id = self.in_round(1).group_id
 
 class Player(BasePlayer):
     contribution = models.IntegerField(default=-1)
@@ -211,7 +214,7 @@ def custom_export(players):
         row = [
             p.session.code,
             p.participant.label,
-            p.group.id,
+            p.group.group_id,
             p.participant.id_in_session,
             p.round_number,
             p.contribution,

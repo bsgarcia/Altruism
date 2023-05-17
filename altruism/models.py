@@ -16,6 +16,7 @@ from requests import session
 from utils.debug import logger
 from settings import export_style
 import shutil
+import shortuuid as su
 
 
 class C(BaseConstants):
@@ -132,9 +133,11 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     order_idx = models.IntegerField(default=-1)
+    group_id = models.IntegerField(default=-1)
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)
+        self.set_group_id()
         self.set_condition()
 
     def set_condition(self):
@@ -142,6 +145,8 @@ class Group(BaseGroup):
             self.order_idx = np.random.randint(len(C.ORDERS))
         else:
             self.order_idx = self.in_round(1).order_idx
+    def set_group_id(self):
+        self.group_id = su.uuid()[:8]
 
 class Player(BasePlayer):
     contribution = models.IntegerField(default=-1)

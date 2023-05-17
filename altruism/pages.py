@@ -20,12 +20,8 @@ RESULTS_TIME = 7.5 * SECOND
 # ------------------------------------------------------------------------------------------------------------------- #
 class End(Page):
 
-    # def vars_for_template(self):
-        # dtotal = np.round(total*pounds_per_point, 2)
-        # if decimals show, if not use int
-        # pounds = int(dtotal) if dtotal.is_integer() else dtotal
-        # pences = int(dtotal*100) if (dtotal*100).is_integer() else dtotal*100
-        # return {'total': total, 'pences': pences, 'pounds': pounds}
+    def vars_for_template(self):
+        return {'prolific_id': self.player.participant.label}
 
     def is_displayed(self):
         return self.round_number == C.NUM_ROUNDS

@@ -28,15 +28,17 @@
 {% endblock %}
 
 {% block content %}
-
+    <div id='inst' class="inst-container fade-in">
+   
     <div id="text" class="container fade-in">
-    <p><br><br>
+        <p><br><br>
         {% comment %} You won <b style="font-size: 28px">{{ total }}</b> points which corresponds to <b style="font-size: 28px">{{ pences }}</b> pences  or <b style="font-size: 28px">{{ pounds }}</b> pounds! {% endcomment %}
         Thanks for your participation! <br>
         You need to fill in a quick survey to complete the experiment:
-        <a href="https://cognitionens.eu.qualtrics.com/jfe/form/SV_88My8ZHUbFG1Cuy"> Survey. </a>
+        <a href="https://cognitionens.eu.qualtrics.com/jfe/form/SV_88My8ZHUbFG1Cuy?Prolific_id={{ prolific_id }}"> Survey. </a>
     </p>
     </div>
+
 
 {% endblock %}
 

@@ -7,7 +7,7 @@ SESSION_CONFIGS = [
         name='altruism',
         display_name="alt_single_player",
         num_demo_participants=2,
-        instructions_time=30,#60*9,
+        instructions_time=50,#60*9,
         dropout_time=10,
         app_sequence=['altruism'],
         charities=['wwf', 'save the children', 'the nature conservancy', 'unicef'],
@@ -45,8 +45,8 @@ USE_POINTS = True
 
 ROOMS = [
     dict(
-        name='econ101',
-        display_name='Econ 101 class',
+        name='prolific1',
+        display_name='Prolific 1',
         # participant_label_file='_rooms/econ101.txt',
     ),
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),

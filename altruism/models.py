@@ -133,7 +133,7 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     order_idx = models.IntegerField(default=-1)
-    group_id = models.IntegerField(default=-1)
+    group_id = models.StringField(default="")
 
     def __init__(self, *args, **kwargs) -> None:
         super().__init__(*args, **kwargs)

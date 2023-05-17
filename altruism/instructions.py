@@ -14,7 +14,10 @@ read these instructions. After that, you will be randomly paired with another pa
          <span class="quiz-question-text-item green"><b>Warning</b>&nbsp;<br>
          To avoid
 waiting times for other participants, please note that if you are inactive for more than one minute,
-you will be excluded from the experiment and your submission on Prolific will be rejected.
+you will be excluded from the experiment and your submission on Prolific will be rejected. 
+<br>After clicking on the &quot;Next&quot; button below, we will ask for permission to send you notifications.
+Please accept this request, as we will notify you when the experiment is about to start. The countdown for the beginning of the experiment 
+is displayed on the last page of these instructions.
         </span>
         </div>
         """,
@@ -30,7 +33,7 @@ given to you as a bonus payment for the study.
    <div class="quiz-question-text-container quiz-question-info-container magenta">
          <span class="quiz-question-text-item-icon fa-solid fa-info-circle magenta" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
          <span class="quiz-question-text-item magenta"><b>Info</b>&nbsp;<br>
-         Please note that only one out of three rounds will be actually implemented (i.e. we will take care of
+         Please note that only one out of three rounds will be actually selected and implemented (i.e. we will take care of
 making the actual donation to the charity you’ve chosen in that selected round).
         </span>
         </div>

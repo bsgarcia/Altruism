@@ -150,6 +150,7 @@ class Group(BaseGroup):
             self.group_id = su.uuid()[:8]
         else:
             self.group_id = self.in_round(1).group_id
+            
 
 class Player(BasePlayer):
     contribution = models.IntegerField(default=-1)

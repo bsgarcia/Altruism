@@ -105,7 +105,7 @@ you the receipt of the donation that was made in the scope of the experiment to 
 charity.<br><br>
 After the three rounds, you will be redirected to a questionnaire that you need to fill
 in in order to receive your payment from Prolific.<br><br>
-Ready? The experiment will start automatically in <b>100</b> second(s).
+Ready? You can start the experiment in <b>100</b> second(s).
 
          """
          

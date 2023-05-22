@@ -46,6 +46,7 @@
         var notifTimer;
         var timeLimit = {{ instructionsTime }};
         var startTime = {{ startTime }};
+        var ready = false;
         $(document).ready(function () {
             
             let panels = {{ panels }};
@@ -86,6 +87,11 @@
                 }
 
                 if (index > max) {
+                    if (ready) {
+                        $('#main').fadeOut(140);
+                        $('#form').submit();
+                        return
+                    }
                     materialAlert('Wait', 'Please wait for the end of the countdown to proceed to the experiment', () => {
                     });
                     index--;
@@ -110,6 +116,13 @@
            setInterval(function () {
                liveSend('hey');
                if (index == max) {
+                if (Math.round((timeLimit-(Date.now() - startTime))/1000) <= 0) {
+                    document.querySelector('#next').innerHTML = 'START!';
+                    document.querySelector('#text').innerHTML =
+                    document.querySelector('#text')
+                   .innerHTML.replace(/\d+/g, "0")
+                    return;
+                }
                 //alert('test')
                 document.querySelector('#text').innerHTML =
                    document.querySelector('#text')
@@ -126,9 +139,11 @@
 
         function liveRecv(data) {
             if (data === true) {
-                $('#main').fadeOut(140);
+                //$('#main').fadeOut(140);
                 clearInterval(notifTimer);
-                $('#form').submit();
+
+                ready = true;
+                //$('#form').submit();
             }
         }
 

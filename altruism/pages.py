@@ -27,10 +27,6 @@ class End(Page):
         return self.round_number == C.NUM_ROUNDS
 
 class Wait(WaitPage):
-    # group_by_arrival_time = True
-    def is_displayed(self):
-        return self.round_number != C.NUM_ROUNDS
-
     def after_all_players_arrive(self):
         logger.debug('WaitPage: set status as connected')
         for p in self.group.get_players():
@@ -42,22 +38,28 @@ class Wait(WaitPage):
                 logger.debug('WaitPage: {p.participant.code}-{p.participant.label} is not dropout anymore'.format(p=p))
                 p.participant.is_dropout = False
 
-class InitialWait(WaitPage):
-    group_by_arrival_time = True
-    
+class Instructions(Page):
+
     def is_displayed(self):
         return self.round_number == 1
 
-    def after_all_players_arrive(self):
-        logger.debug('WaitPage: set status as connected')
-        for p in self.group.get_players():
-            logger.debug(
-                'WaitPage: {p.participant.code}-{p.participant.label} is connected'.format(p=p))
-            _set_as_connected(p)
-            if p.participant.is_dropout:
-                # if p.participant.is_dropout, set it to False as it is a new round
-                logger.debug('WaitPage: {p.participant.code}-{p.participant.label} is not dropout anymore'.format(p=p))
-                p.participant.is_dropout = False
+    def vars_for_template(self):
+        from .instructions import get_panels, titles
+        if self.player.participant.time_instructions is None:
+            self.player.participant.time_instructions = int(time.time() * SECOND)
+        limit = self.session.config.get('instructions_time') * SECOND
+        # single_player = int(self.session.config.get('single_player')) 
+        return {'panels': get_panels(), 'titles': titles, 'instructionsTime': limit,
+         'startTime': self.player.participant.time_instructions}#, 'single_player': single_player}
+
+    @staticmethod
+    def live_method(player, data):
+        _set_as_connected(player)
+        time_since_opening = time.time() * SECOND -  player.participant.time_instructions
+        limit = player.session.config.get('instructions_time') * SECOND
+        if time_since_opening > limit:
+            return {player.id_in_group: True}
+        return False
 
 
 class Main(Page):
@@ -115,7 +117,8 @@ class Main(Page):
 
     
 
-page_sequence = [InitialWait, Main, End, Wait]
+# page_sequence = [Instructions, Disclose, Contribute, Results, End]
+page_sequence = [Wait, Instructions, Main, End]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions #                                                                                                    # 

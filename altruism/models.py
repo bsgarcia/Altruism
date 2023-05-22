@@ -127,8 +127,8 @@ class Subsession(BaseSubsession):
         match according to deterministic good/bad, good/good, bad/bad
         """
         if self.round_number == 1:
-            pass
-            # self.init()
+            # pass
+            self.init()
 
 
 class Group(BaseGroup):

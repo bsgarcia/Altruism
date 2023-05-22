@@ -49,6 +49,11 @@ ROOMS = [
         display_name='Prolific 1',
         # participant_label_file='_rooms/econ101.txt',
     ),
+    dict(
+        name='prolific2',
+        display_name='Prolific 2',
+    ),
+
     dict(name='live_demo', display_name='Room for live demo (no participant labels)'),
 ]
 

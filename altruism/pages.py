@@ -30,7 +30,7 @@ class Wait(WaitPage):
     # group_by_arrival_time = True
     def is_displayed(self):
         return self.round_number != C.NUM_ROUNDS
-
+    
     def after_all_players_arrive(self):
         logger.debug('WaitPage: set status as connected')
         for p in self.group.get_players():
@@ -45,6 +45,9 @@ class Wait(WaitPage):
 class InitialWait(WaitPage):
     group_by_arrival_time = True
     
+    def vars_for_template(self):
+        return {'body_text': 'Waiting for another player... please do not leave this page.'}
+
     def is_displayed(self):
         return self.round_number == 1
 
@@ -86,7 +89,7 @@ class Main(Page):
    
         return {
             'charities': ch[self.player.condition] +  [('none', 'img/none_of_them.png')] ,
-            'endowment': endowment,
+            'endowment': endowment, 'notify': int(self.round_number == 1)
         }
     
     @staticmethod

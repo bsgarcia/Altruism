@@ -334,12 +334,12 @@ const submit = () => {
         msg_clean: msg_clean,
         msg_json: msg_json
     })
-    
+
     // for firefox
     document.querySelector('form').dispatchEvent(new Event('submit'));
-    
+
     // for chrome/edge
-    let event = document.createEvent('Event'); 
+    let event = document.createEvent('Event');
     event.initEvent('submit', true, true);
     document.querySelector('form').dispatchEvent(event);
     document.querySelector('form').submit();
@@ -382,6 +382,21 @@ const ping = () => {
     setInterval(() => {
         liveSend('ping')
     }, 2000)
+}
+
+window.notify = async () => {
+    if (!window.Notification) {
+        console.log('Browser does not support notifications.');
+    } else {
+        // check if permission is already granted
+        if (Notification.permission === 'granted') {
+            // show notification here
+            var notify = new Notification('Prolific Experiment', {
+                body: 'We found a match! The experiment is starting!',
+                icon: 'https://pbs.twimg.com/profile_images/1027915667637497861/Ps9JRJOc_400x400.jpg',
+            });
+        }
+    }
 }
 // const toggleLoading = async () => {
 //     let el = document.getElementById('page-loading');

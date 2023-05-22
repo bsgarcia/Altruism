@@ -83,14 +83,19 @@
     if (document.readyState !== 'loading') {
         //console.log('document is already ready, just execute code here');
         window.main();
+        if ({{ notify }}) {
+            window.notify()
+        }
     } else {
         document.addEventListener('DOMContentLoaded', function () {
             //console.log('document was not ready, place code here');
             window.main();
+            if ({{ notify }}) {
+                window.notify()
+            }
         });
     }
     //setActiveCurrentStep('experiment');
-
-
+    
 </script>
 {% endblock %}

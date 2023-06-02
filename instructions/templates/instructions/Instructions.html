@@ -67,6 +67,13 @@
                 $('#text').hide().html(panels[index]).fadeIn(300);
                 $('#title').hide().html(titles[index]).fadeIn(300);
                 if (index === max) {
+                    if (Math.round((timeLimit-(Date.now() - startTime))/1000) <= 0) {
+                        document.querySelector('#next').innerHTML = 'START!';
+                        document.querySelector('#text').innerHTML =
+                        document.querySelector('#text')
+                        .innerHTML.replace(/\d+/g, "0")
+                        return;
+                    }
                     document.querySelector('#text').innerHTML =
                    document.querySelector('#text')
                    .innerHTML.replace(/\d+/g, Math.round((timeLimit-(Date.now() - startTime))/1000))

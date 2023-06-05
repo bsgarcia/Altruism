@@ -68,7 +68,7 @@ choose the same donation recipient and amount. You can update both of your choic
 amount) at any time.
          
    <div class="quiz-question-text-container quiz-question-info-container orange">
-         <span class="quiz-question-text-item-icon fa-solid fa-info-circle orange" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
+         <span class="quiz-question-text-item-icon fa-solid fa-warning orange" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
          <span class="quiz-question-text-item orange"><b>Warning</b>&nbsp;<br>
          If you fail to coordinate with the other participant (coordination means make
 exactly the same decision regarding charity and amount), no donation will be made and neither of
@@ -92,7 +92,7 @@ button, the subsequent round will start (there are three rounds in total).
         </div>
 
           <div class="quiz-question-text-container quiz-question-info-container orange">
-         <span class="quiz-question-text-item-icon fa-solid fa-info-circle orange" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
+         <span class="quiz-question-text-item-icon fa-solid fa-warning orange" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
          <span class="quiz-question-text-item orange"><b>Warning</b>&nbsp;<br>
 You have to send “I will validate” in order to enable the validation button and continue to the next
 round.
@@ -100,12 +100,22 @@ round.
         </div>
          """,
          4: """
+ <div class="quiz-question-text-container quiz-question-info-container magenta">
+         <span class="quiz-question-text-item-icon fa-solid fa-info-circle magenta" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
+         <span class="quiz-question-text-item magenta"><b>Info</b>&nbsp;<br>
+         The first round is a test round for you to get familiarized with the process. The decision you and
+your study partner make in the test round will not be implemented, but please behave as if it
+were.
+After the test round the actual decision-making will begin.
+        </span>
+        </div>
+
          If you wish, you can indicate your email address at the end of the experiment, so that we can send
 you the receipt of the donation that was made in the scope of the experiment to your chosen
 charity.<br><br>
 After the three rounds, you will be redirected to a questionnaire that you need to fill
 in in order to receive your payment from Prolific.<br><br>
-Ready? You can start the experiment in <b>100</b> second(s).
+<p id="count">Ready? You can start the experiment in <b>100</b> second(s).</p>
 
          """
          

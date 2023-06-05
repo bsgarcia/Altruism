@@ -69,26 +69,38 @@ class Main(Page):
             return 'altruism/Dropout.html'
         # if not dropout then execute the original method
         return super().get_template_name()
+
     
     def vars_for_template(self):
         charity_names = self.session.config.get('charities')
         endowment = self.session.config.get('endowment')
 
-        ch = {
-            1: [[charity, f'img/{charity}.png'] for charity in ('unicef', 'savethechildren')],
-            2: [[charity, f'img/{charity}.png'] for charity in ('wwf', 'thenatureconservancy')],
-            3: [[charity, f'img/{charity}.png'] for charity in ('unicef', 'savethechildren', 'wwf', 'thenatureconservancy')],
-        }
-        for k in ch:
-            for i, (name, img) in enumerate(ch[k]):
-                for name_with_space in charity_names:
-                    if name_with_space.replace(' ', '') == name:
-                        ch[k][i][0] = name_with_space
+        if self.round_number == 1:
 
-        self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-1]
+            self.player.condition = -2
+            ch = [
+                ['cancer research uk', 'img/cancerresearchuk.png'],
+                ["alzheimer's research uk", 'img/alzheimersresearchuk.png',]
+            ] + [['none', 'img/none_of_them.png']]
+        
+        if self.round_number > 1:
+            ch = {
+                1: [[charity, f'img/{charity}.png'] for charity in ('unicef', 'savethechildren')],
+                2: [[charity, f'img/{charity}.png'] for charity in ('wwf', 'thenatureconservancy')],
+                3: [[charity, f'img/{charity}.png'] for charity in ('unicef', 'savethechildren', 'wwf', 'thenatureconservancy')],
+            }
+            for k in ch:
+                for i, (name, img) in enumerate(ch[k]):
+                    for name_with_space in charity_names:
+                        if name_with_space.replace(' ', '') == name:
+                            ch[k][i][0] = name_with_space
+
+            self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-1]
+            ch = ch[self.player.condition] + [('none', 'img/none_of_them.png')]
+        print(ch)
    
         return {
-            'charities': ch[self.player.condition] +  [('none', 'img/none_of_them.png')] ,
+            'charities': ch,
             'endowment': endowment, 'notify': int(self.round_number == 1)
         }
     

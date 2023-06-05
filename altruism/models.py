@@ -23,10 +23,10 @@ class C(BaseConstants):
     # all variables should be in upper case
     NAME_IN_URL = 'altruism'
     PLAYERS_PER_GROUP = 2
-    NUM_ROUNDS = 3
+    NUM_ROUNDS = 4
     ENDOWMENT = 10
     ORDERS = [(1, 2, 3), (1, 3, 2), (2, 1, 3),
-                  (2, 3, 1), (3, 1, 2), (3, 2, 1)]
+              (2, 3, 1), (3, 1, 2), (3, 2, 1)]
 
 
 class Subsession(BaseSubsession):
@@ -145,12 +145,13 @@ class Group(BaseGroup):
             self.order_idx = np.random.randint(len(C.ORDERS))
         else:
             self.order_idx = self.in_round(1).order_idx
+
     def set_group_id(self):
         if self.round_number == 1:
             self.group_id = su.uuid()[:8]
         else:
             self.group_id = self.in_round(1).group_id
-            
+
 
 class Player(BasePlayer):
     contribution = models.IntegerField(default=-1)

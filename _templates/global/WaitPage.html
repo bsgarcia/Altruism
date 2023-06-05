@@ -5,12 +5,17 @@
 
 {% block internal_styles %}
 {{ super() }}
+
+<link href="{% static 'css/matter-0.2.2.min.css' %}" rel="stylesheet">
 <style>
     body {
         font-family: 'Sans';
         background-color: #FAFAFA;
     }
-
+    .matter-progress-circular:indeterminate::-moz-progress-bar {
+        color: #B18FC2;
+    }
+    
     .card {
         background: white;
         border-radius: 5px;
@@ -73,8 +78,10 @@
 <script>var js_vars = {{ js_vars| json }};</script>{% endif %}
 <div class="otree-wait-page container fade-in">
     <div class="card" style="width: 60%">
+        
         <h4 class="otree-wait-page__title card-header">
-            {% block title %}{{ title_text }}{% endblock %}
+            <progress class="matter-progress-circular"></progress>{% block title %}{{ title_text }}{% endblock %}
+
         </h4>
         <div class="card-body">
             <!-- <progress class="matter-progress-circular"></progress> -->
@@ -85,11 +92,10 @@
             {% block content %}
             <p class="otree-wait-page__body">{{ body_text }}</p>
             {% endblock %}
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div>
-            </div>
-            <br><br>
-            if you get bored, don't hesitate to play this little snake game. Press <b>space</b> to play or pause the game, use <b>arrow keys</b> to move the snake.
+            <!-- <div class="progress"> -->
+                <!-- <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"></div> -->
+            <!-- </div> -->
+            If you get bored, don't hesitate to play this little snake game. Press <b>space</b> to play or pause the game, use <b>arrow keys</b> to move the snake.
         </div>
     </div>
     {% if is_defined('view.is_debug') and view.is_debug %}

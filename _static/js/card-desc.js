@@ -15,5 +15,13 @@ export const cardDesc = {
     ecologically important lands and waters for nature and people. We address threats to conservation
     involving climate change, fire, fresh water, forests, invasive species, and marine ecosystems. We use
     a science-based approach, and we pursue non-confrontational, pragmatic solutions to conservation
-    challenges.`
+    challenges.`,
+    cancerresearchuk: `
+    Cancer Research UK is the world’s largest independent cancer research institute. It works on how to
+    prevent, diagnose and treat cancer and has benefitted millions of lives over the past 120 years.
+    `, 
+    alzheimersresearchuk: `
+    Alzheimer’s Research UK is the UK’s largest dementia charity, dedicated to funding research to
+    understand, diagnose, reduce risk and treat the diseases that cause dementia.
+    `
 }

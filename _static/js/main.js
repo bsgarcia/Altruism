@@ -266,7 +266,7 @@ const setUpDescription = () => {
         let p = document.createElement('p');
         btnDesc.classList.add('btn-desc');
         p.innerText = 'read more';
-        let id = x.id.replace(/ /g, '');
+        let id = x.id.replace(/ /g, '').replace("'", "")
         let text = `
         <img class="img-desc" src="/static/img/${id}.png" alt="${id}">
         <br><br>

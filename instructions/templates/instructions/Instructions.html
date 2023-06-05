@@ -69,13 +69,13 @@
                 if (index === max) {
                     if (Math.round((timeLimit-(Date.now() - startTime))/1000) <= 0) {
                         document.querySelector('#next').innerHTML = 'START!';
-                        document.querySelector('#text').innerHTML =
-                        document.querySelector('#text')
+                        document.querySelector('#count').innerHTML =
+                        document.querySelector('#count')
                         .innerHTML.replace(/\d+/g, "0")
                         return;
                     }
-                    document.querySelector('#text').innerHTML =
-                   document.querySelector('#text')
+                    document.querySelector('#count').innerHTML =
+                   document.querySelector('#count')
                    .innerHTML.replace(/\d+/g, Math.round((timeLimit-(Date.now() - startTime))/1000))
                 }
                 if (index > 1) {
@@ -125,14 +125,14 @@
                if (index == max) {
                 if (Math.round((timeLimit-(Date.now() - startTime))/1000) <= 0) {
                     document.querySelector('#next').innerHTML = 'START!';
-                    document.querySelector('#text').innerHTML =
-                    document.querySelector('#text')
+                    document.querySelector('#count').innerHTML =
+                    document.querySelector('#count')
                    .innerHTML.replace(/\d+/g, "0")
                     return;
                 }
                 //alert('test')
-                document.querySelector('#text').innerHTML =
-                   document.querySelector('#text')
+                document.querySelector('#count').innerHTML =
+                   document.querySelector('#count')
                    .innerHTML.replace(/\d+/g, Math.round((timeLimit-(Date.now() - startTime))/1000))
                }
            }, 1000);

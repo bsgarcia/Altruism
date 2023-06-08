@@ -95,7 +95,7 @@ class Main(Page):
                         if name_with_space.replace(' ', '') == name:
                             ch[k][i][0] = name_with_space
 
-            self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-1]
+            self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-2]
             ch = ch[self.player.condition] + [('none', 'img/none_of_them.png')]
         print(ch)
    

@@ -38,8 +38,7 @@
 </div> -->
 <div class="container fade-in" id="main">
     <div class="row">
-        <div class="col1">
-            <h2>Choose a charity</h2>
+        <h2>Choose a charity</h2>
             <section class="cards">
                 {% for c, img in charities %}
                 <article id="{{ c }}" class="card card--1">
@@ -58,13 +57,14 @@
                     </div>
                 </article>
                 {% endfor %}
+    </div>
+    <div class="row">
             </section>
 
             <h2>Choose an amount to give</h2>
             <br>
             <br>
             <div id="slider-div"></div>
-        </div>
     </div>
 
     <div align="center" class="div-validate">

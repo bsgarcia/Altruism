@@ -26,42 +26,6 @@ class End(Page):
     def is_displayed(self):
         return self.round_number == C.NUM_ROUNDS
 
-class Wait(WaitPage):
-    # group_by_arrival_time = True
-    def is_displayed(self):
-        return self.round_number != C.NUM_ROUNDS
-    
-    def after_all_players_arrive(self):
-        logger.debug('WaitPage: set status as connected')
-        for p in self.group.get_players():
-            logger.debug(
-                'WaitPage: {p.participant.code}-{p.participant.label} is connected'.format(p=p))
-            _set_as_connected(p)
-            if p.participant.is_dropout:
-                # if p.participant.is_dropout, set it to False as it is a new round
-                logger.debug('WaitPage: {p.participant.code}-{p.participant.label} is not dropout anymore'.format(p=p))
-                p.participant.is_dropout = False
-
-class InitialWait(WaitPage):
-    group_by_arrival_time = True
-    
-    def vars_for_template(self):
-        return {'body_text': 'Waiting for another player... please do not leave this page.'}
-
-    def is_displayed(self):
-        return self.round_number == 1
-
-    def after_all_players_arrive(self):
-        logger.debug('WaitPage: set status as connected')
-        for p in self.group.get_players():
-            logger.debug(
-                'WaitPage: {p.participant.code}-{p.participant.label} is connected'.format(p=p))
-            _set_as_connected(p)
-            if p.participant.is_dropout:
-                # if p.participant.is_dropout, set it to False as it is a new round
-                logger.debug('WaitPage: {p.participant.code}-{p.participant.label} is not dropout anymore'.format(p=p))
-                p.participant.is_dropout = False
-
 
 class Main(Page):
     def get_template_name(self):
@@ -69,7 +33,6 @@ class Main(Page):
             return 'altruism/Dropout.html'
         # if not dropout then execute the original method
         return super().get_template_name()
-
     
     def vars_for_template(self):
         charity_names = self.session.config.get('charities')
@@ -95,7 +58,8 @@ class Main(Page):
                         if name_with_space.replace(' ', '') == name:
                             ch[k][i][0] = name_with_space
 
-            self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-1]
+            print('Round number: ', self.round_number)
+            self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-2]
             ch = ch[self.player.condition] + [('none', 'img/none_of_them.png')]
    
         return {

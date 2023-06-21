@@ -22,7 +22,7 @@ import shortuuid as su
 class C(BaseConstants):
     # all variables should be in upper case
     NAME_IN_URL = 'altruism'
-    PLAYERS_PER_GROUP = 2
+    PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 4
     ENDOWMENT = 10
     ORDERS = [(1, 2, 3), (1, 3, 2), (2, 1, 3),

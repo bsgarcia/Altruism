@@ -97,7 +97,6 @@ class Main(Page):
 
             self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-1]
             ch = ch[self.player.condition] + [('none', 'img/none_of_them.png')]
-        print(ch)
    
         return {
             'charities': ch,
@@ -107,7 +106,6 @@ class Main(Page):
     @staticmethod
     def live_method(player, data):
         _set_as_connected(player)
-        _check_for_disconnections(players=player.get_others_in_group())
 
         # if player.choice is empty string ""
         if not player.choice and data != 'ping':
@@ -123,14 +121,14 @@ class Main(Page):
             )
 
             player.set_msg(
-                msg_clean=data['msg_clean'], msg_html=data['msg_html'], msg_json=data['msg_json']
-            )
+                msg_clean="", msg_html="", msg_json="")
+            # )
             
             #player.end_round()
 
     
 
-page_sequence = [InitialWait, Main, End, Wait]
+page_sequence = [Main, End]
 
 # ------------------------------------------------------------------------------------------------------------------- #
 # Side Functions #                                                                                                    # 

@@ -144,7 +144,7 @@ def custom_export(players):
             p.session.code,
             p.participant.label,
             p.group.group_id,
-            p.id_in_group,
+            p.id_in_subsession,
             p.round_number,
             p.contribution,
             p.choice,

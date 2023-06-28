@@ -139,7 +139,7 @@ def custom_export(players):
     ]
     yield col
     for p in players:
-        order_idx = getattr(p, 'group_idx', p.group.order_idx)
+        order_idx = getattr(p, 'order_idx', p.group.order_idx)
         row = [
             p.session.code,
             p.participant.label,

@@ -58,8 +58,9 @@ class Main(Page):
                         if name_with_space.replace(' ', '') == name:
                             ch[k][i][0] = name_with_space
 
-            print('Round number: ', self.round_number)
-            self.player.condition = C.ORDERS[self.group.order_idx][self.round_number-2]
+            logger.debug(f'Round number: {self.round_number}')
+            logger.debug(f'Participant idx: {self.player.participant.idx}')
+            self.player.condition = C.ORDERS[self.player.participant.idx][self.round_number-2]
             ch = ch[self.player.condition] + [('none', 'img/none_of_them.png')]
    
         return {

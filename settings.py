@@ -31,7 +31,7 @@ SESSION_CONFIG_DEFAULTS = dict(
 )
 
 PARTICIPANT_FIELDS = ['opp_id', 'multiplier', 'disclose', 'contribution', 'opp_bad_contribution',
-                      'prolific_id', 'idx', 'is_dropout', 'time_at_last_response', 'total',
+                      'prolific_id', 'idx', 'is_dropout', 'time_at_last_response', 'total', 
                       'disclosure_group', 'end', 'opp_multiplier', 'opp_disclose', 'opp_p_disclose', 'time_instructions']
 
 # ISO-639 code

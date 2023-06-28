@@ -151,8 +151,7 @@ const setUpValidation = () => {
         let selected = document.querySelector('.selected');
         materialConfirm('Confirmation', `You chose to give <b>${slider.value}</b> pound(s) to
             <b>${selected.getAttribute('id')}</b>.<br><br>
-            Please note that if the other player selected another answer
-            than you (i.e. you did not coordinate with each other) the money will be lost.`,
+            `,
             // if ok is clicked, submit the form
             submit);
         // document.querySelector('#modal').style.display = 'block';

@@ -38,6 +38,8 @@ class Main(Page):
         charity_names = self.session.config.get('charities')
         endowment = C.ENDOWMENT
 
+        self.player.set_order_idx(self.player.participant.idx)
+
         if self.round_number == 1:
 
             self.player.condition = -2

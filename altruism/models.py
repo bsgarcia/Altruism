@@ -83,6 +83,7 @@ class Player(BasePlayer):
     msg_clean = models.LongStringField(default='')
     msg_html = models.LongStringField(default='')
     msg_json = models.LongStringField(default='')
+    order_idx = models.IntegerField(default=-1)
 
     def set_condition(self, condition: int):
         self.condition = condition
@@ -100,6 +101,9 @@ class Player(BasePlayer):
         self.msg_clean = msg_clean
         self.msg_html = msg_html
         self.msg_json = msg_json
+    
+    def set_order_idx(self, order_idx: int):
+        self.order_idx = order_idx
 
     def end_round(self):
         """

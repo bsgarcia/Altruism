@@ -56,6 +56,7 @@
 
             $('#text').html(panels[index]);
             $('#title').html(titles[index]);
+            $('#previous').hide();
 
             $('#next').click(function () {
 
@@ -64,6 +65,9 @@
                     scrollTop: $("#inst").offset().top
                 }, 200);
                 index++;
+                if (index ==2) {
+                    $('#previous').show();
+                }
                 $('#text').hide().html(panels[index]).fadeIn(300);
                 $('#title').hide().html(titles[index]).fadeIn(300);
                 if (index === max) {

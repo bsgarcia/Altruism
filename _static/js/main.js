@@ -27,8 +27,8 @@ function toggleSlider(enableOnly = false) {
         document.querySelector('#js-rangeslider-0').disabled = false;
         div.classList.remove('disabled');
         rangeslider.classList.remove('rangeslider-disabled');
-        slider.setAttribute('value', 5);
-        $('#slider').val(5).change()
+        slider.setAttribute('value', 3);
+        $('#slider').val(3).change()
         setTimeout(() => {
             slider.dispatchEvent(new Event('change'));
             rangeslider.dispatchEvent(new Event('change'))
@@ -58,7 +58,7 @@ const setUpSlider = () => {
     let step = 1;
     //let question = 'What was the average value of this symbol?'
     //let question = 'What was the average value of this symbol?'
-    let initValue = Math.floor(Math.random() * (8 - 2 + 1)) + 2;
+    let initValue = Math.floor(Math.random() * 6);
     // generate html
     let sliderHTML = SliderManager.generateSlider({
         text: '',
@@ -121,6 +121,17 @@ const clickCard = (el) => {
         el.classList.add('selected');
         document.querySelector('#ok').disabled = false
     }
+
+    // if the card is none, disable the slider
+    if (el.id == 'none') {
+        toggleSlider()
+    }
+    
+    // if the slider is disabled and the card is not none, enable the slider
+    let slider = document.querySelector('#slider');
+    if (el.id != 'none' & slider.disabled) {
+        toggleSlider()
+    }
 }
 
 const cardListen = () => {
@@ -130,6 +141,7 @@ const cardListen = () => {
         })
     })
 }
+
 
 const setUpValidation = () => {
     //add event listener to the validate button

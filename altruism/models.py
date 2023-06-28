@@ -24,7 +24,7 @@ class C(BaseConstants):
     NAME_IN_URL = 'altruism'
     PLAYERS_PER_GROUP = None
     NUM_ROUNDS = 4
-    ENDOWMENT = 10
+    ENDOWMENT = 5
     ORDERS = [(1, 2, 3), (1, 3, 2), (2, 1, 3),
               (2, 3, 1), (3, 1, 2), (3, 2, 1)]
 

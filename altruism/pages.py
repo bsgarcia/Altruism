@@ -36,7 +36,7 @@ class Main(Page):
     
     def vars_for_template(self):
         charity_names = self.session.config.get('charities')
-        endowment = self.session.config.get('endowment')
+        endowment = C.ENDOWMENT
 
         if self.round_number == 1:
 

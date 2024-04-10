@@ -253,9 +253,8 @@ const setUpSlider = () => {
     let min = 0;
     let max = window.max;
     let step = 1;
-    //let question = 'What was the average value of this symbol?'
-    //let question = 'What was the average value of this symbol?'
-    let initValue = Math.floor(Math.random() * (8 - 2 + 1)) + 2;
+    // init value is between 1 and 4
+    let initValue = Math.floor(Math.random() * (max - min + 1)) + min;
     // generate html
     let sliderHTML = SliderManager.generateSlider({
         text: '',
@@ -316,8 +315,7 @@ const setUpValidation = () => {
         let selected = document.querySelector('.selected');
         materialConfirm('Confirmation', `You chose to give <b>${slider.value}</b> pound(s) to
             <b>${selected.getAttribute('id')}</b>.<br><br>
-            Please note that if the other player selected another answer
-            than you (i.e. you did not coordinate with each other) the money will be lost.`,
+            Are you sure you want to proceed?`,
             // if ok is clicked, submit the form
             submit);
         // document.querySelector('#modal').style.display = 'block';

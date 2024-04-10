@@ -22,15 +22,14 @@ is displayed on the last page of these instructions.
         </div>
         """,
         2: """
-        You and the other participant will receive a joint endowment of £10.
-You now get to decide together what to do with this endowment: you can donate part or all of it to a given charity, or
-you can keep it.
-There will be three rounds, one of which will be randomly chosen to be implemented. If you made a
-positive donation in that round, then the amount you indicated will be donated in your name.
-Anything you do not decide to donate will be split evenly between you and the other participant and
-given to you as a bonus payment for the study.
+        You and the other participant will receive an individual endowment of £5.
+         You now get to decide what to do with this endowment: you can donate part
+         or all of it to a given charity, or you can keep it. There will be three rounds,
+         one of which will be randomly chosen to be implemented. If you made a positive
+         donation in that round, then the amount you indicated will be donated in your name. 
+         Anything you do not decide to donate will be given to you as a bonus payment for the study. 
 
-   <div class="quiz-question-text-container quiz-question-info-container magenta">
+        <div class="quiz-question-text-container quiz-question-info-container magenta">
          <span class="quiz-question-text-item-icon fa-solid fa-info-circle magenta" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
          <span class="quiz-question-text-item magenta"><b>Info</b>&nbsp;<br>
          Please note that only one out of three rounds will be actually selected and implemented (i.e. we will take care of
@@ -52,7 +51,7 @@ making the actual donation to the charity you’ve chosen in that selected round
             Your browser does not support the video tag.
         </video>
         </div>
-       <b> 2. a donation amount (£0-£10)</b>
+       <b> 2. a donation amount (£0-£5)</b>
             
             <div class="inst-video">
             <video width="640" height="480" controls autoplay loop muted>
@@ -63,27 +62,23 @@ making the actual donation to the charity you’ve chosen in that selected round
 
          """,
          3: """
-        In order to make a decision, you have to coordinate with the other participant. You both have to
-choose the same donation recipient and amount. You can update both of your choices (charity and
+        You can update your choices (charity and
 amount) at any time.
          
-   <div class="quiz-question-text-container quiz-question-info-container orange">
-         <span class="quiz-question-text-item-icon fa-solid fa-warning orange" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
-         <span class="quiz-question-text-item orange"><b>Warning</b>&nbsp;<br>
-         If you fail to coordinate with the other participant (coordination means make
-exactly the same decision regarding charity and amount), no donation will be made and neither of
-you will receive a bonus payment.
-        </span>
-        </div>
-
-        To facilitate coordination with the other participant, you can use the chat window which will open
-automatically once you have clicked on a charity. You have to choose between predefined messages
-that allow you to make suggestions about your preferred donation recipient and amount, and react
-to the other participant’s suggestions.
-Once you have agreed on both choices (charity and amount), you have to send your partner the
+       You can use the chat window which will open automatically once you have clicked on a charity.
+         You have to choose between predefined messages that allow you to communicate about
+           your  donation recipient and amount,
+         and observe the other participant’s choices as well.
+Once you have selected charity and amount, you have to send your partner the
 message “I will validate” in order to enable the validation button. After clicking the validation
 button, the subsequent round will start (there are three rounds in total).
-
+<div class="quiz-question-text-container quiz-question-info-container magenta">
+         <span class="quiz-question-text-item-icon fa-solid fa-info-circle magenta" style="font-size: 30px; margin-right: 1.5%; position: relative; top: 4px;"></span>
+         <span class="quiz-question-text-item magenta"><b>Info</b>&nbsp;<br>
+         Communication with the other participant has no impact on the outcome of your own decisions. 
+         At most it is only a supplementary information.
+        </span>
+        </div>
    <div class="inst-video">
             <video width="640" height="480" controls autoplay loop muted>
             <source src="/static/video/chat_validate.mp4" type="video/mp4" />

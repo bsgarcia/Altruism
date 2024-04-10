@@ -141,6 +141,7 @@
         notifTimer = setInterval(function () {
                 if ((Date.now() - startTime) > (timeLimit - 10000)) {
                     notifyMe();
+                    clearInterval(notifTimer);
                }
         }, 1000);
 
